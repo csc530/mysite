@@ -1,2 +1,0 @@
-<template>
-<h1>And here we go</h1></template>
