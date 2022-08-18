@@ -12,9 +12,9 @@
 		</div>
 		
 		<nav id="navbarMenuHeroC" class="navbar-menu navbar-end">
-			<router-link v-for="route in rootRoutes" :to="route.path" class="navbar-item">
+			<NuxtLink v-for="route in rootRoutes" :to="route.path" class="navbar-item">
 				{{ route.name }}
-			</router-link>
+			</NuxtLink>
 		</nav>
 	</header>
 </template>
