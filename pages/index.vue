@@ -1,7 +1,5 @@
 <template>
-	<content>
-		<the-navbar />
-	</content>
+<p>Hello World!</p>
 </template>
 
 <style scoped>
@@ -10,5 +8,5 @@
 
 <script setup lang="ts">
 	console.log('hello world');
-	import TheNavbar from "~/components/TheNavbar.vue";</script>
+</script>
 

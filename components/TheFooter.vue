@@ -11,7 +11,7 @@
 	</footer>
 </template>
 
-<script setup lang="js">
+<script setup lang="ts">
 	const links = [
 		{
 			href: '#',

@@ -3493,7 +3493,7 @@ nth-check@^2.0.1:
   optionalDependencies:
     fsevents "~2.3.2"
 
-"nuxt@npm:nuxt3@latest":
+nuxt3@^3.0.0-rc.8-27679173.c688e18, "nuxt@npm:nuxt3@latest":
   version "3.0.0-rc.8-27679173.c688e18"
   resolved "https://registry.yarnpkg.com/nuxt3/-/nuxt3-3.0.0-rc.8-27679173.c688e18.tgz#82d17abc08fc6c40e0c8cd6ea946fb8742470763"
   integrity sha512-LOkkSE2ZUCfIkF0L3czLwXPKQmemv/MUVAR3y8CYpRnb6HCrNE8PohljbQ5qck+80TO+4g2rLTvfBaWgRFR7Ug==

@@ -1,16 +1,21 @@
 <template>
-	<div>
+	<div id="nuxt wrapper">
 		<!--     <NuxtWelcome />-->
+		<the-navbar />
 		<NuxtPage />
+		<the-footer />
 		<!--	  <h1>Hello</h1>-->
 	</div>
 </template>
 
 <script lang="ts" setup>
 	import {useHead} from "#imports";
+	import TheNavbar from "~/components/TheNavbar.vue";
+	import TheFooter from "~/components/TheFooter.vue";
 	
 	useHead({
-		title: 'Nuxt.js',
+		title: 'Home.js',
+		titleTemplate: '%s - Nuxt.js',
 		meta: [
 			{
 				name: 'description',
