@@ -12,7 +12,6 @@
 </template>
 
 <script lang="ts" setup>
-	import {defineProps,} from "vue";
 	import Columnable, {ColumnHeader} from "@/models/columnContent";
 	import BaseHeader from "@/components/BaseHeader.vue";
 	
