@@ -1,33 +1,37 @@
 <template>
-	<h1>My employment History</h1>
-	<base-columns :data="employment">
-		<template #default="{title,tasks,address, term}">
-			<base-card :footer-items="[term.join(' - '),address,]">
-				<template v-slot:header>
-					<h2>{{ title }}</h2>
-				</template>
-				<ul v-if="tasks">
-					<li v-for="task in tasks">
-						{{ task }}
-					</li>
-				</ul>
-				<template #footer="{data}">
-					<time v-if="data.includes(' - ')">{{ data }}</time>
-					<address v-else>{{ data }}</address>
-				</template>
-			</base-card>
-		</template>
-	</base-columns>
+	<main>
+		<h1>My employment History</h1>
+		<base-columns :data="employment">
+			<template #default="{title,tasks,address, term}">
+				<base-card :footer-items="[term.join(' - '),address,]">
+					<template v-slot:header>
+						<h2>{{ title }}</h2>
+					</template>
+					<ul v-if="tasks">
+						<li v-for="task in tasks">
+							{{ task }}
+						</li>
+					</ul>
+					<template #footer="{data}">
+						<time v-if="data.includes(' - ')">{{ data }}</time>
+						<address v-else>{{ data }}</address>
+					</template>
+				</base-card>
+			</template>
+		</base-columns>
+	</main>
 </template>
 
 <style scoped>
 
 </style>
+
 <script lang="ts" setup>
 	import BaseCard from '@/components/BaseCard.vue';
 	import Columnable from "@/models/columnContent";
 	import BaseColumns from "@/components/BaseColumns.vue";
 	
+	useRoute().meta.title = 'Employment';
 	
 	interface EmploymentColumn extends Columnable {
 		title: string;

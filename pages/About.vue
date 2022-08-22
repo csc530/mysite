@@ -26,9 +26,9 @@
 </style>
 <script lang="ts" setup>
 	
-	import BaseCard from "../components/BaseCard.vue";
+	import BaseCard from "@/components/BaseCard.vue";
 	import BaseColumns from '@/components/BaseColumns.vue';
-	import Columnable from '../models/columnContent';
+	import Columnable from '@/models/columnContent';
 	
 	interface AboutColumn extends Columnable {
 		title: string;

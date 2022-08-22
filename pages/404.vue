@@ -14,4 +14,6 @@
 
 <style media="screen" scoped>
 </style>
-<script setup></script>
+
+<script setup>
+</script>
