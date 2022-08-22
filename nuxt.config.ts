@@ -4,5 +4,10 @@ import {defineNuxtConfig} from 'nuxt'
 export default defineNuxtConfig({
 	vite: {
 		vue: {reactivityTransform: true}
-	}
+	},
+	nitro: {
+		preset: 'heroku'
+	},
+	builder: "vite",
+	editor: 'webstorm',
 })
