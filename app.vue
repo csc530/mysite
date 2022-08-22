@@ -1,9 +1,9 @@
 <template>
-	<div id="nuxt wrapper" class="hero-body container is-flex-wrap-wrap is-flex-direction-column content">
+	<div id="nuxt wrapper" class="hero hero-body">
 		<the-navbar />
-		<NuxtPage />
-		✝️🧠🍁👽
+		<NuxtPage :page-key="$route.fullPath" />
 		<the-footer />
+		✝️🧠🍁👽
 	</div>
 </template>
 
@@ -55,14 +55,15 @@
 	@import "bulma/sass/layout/hero.sass"
 	@import "bulma/sass/layout/section.sass"
 </style>
+
 <script lang="ts" setup>
-	import {useHead} from "#imports";
+	import {useHead,} from "#imports";
 	import TheNavbar from "~/components/TheNavbar.vue";
 	import TheFooter from "~/components/TheFooter.vue";
 	
 	useHead({
 		title: 'Home.js',
-		titleTemplate: '%s - Nuxt.js',
+		titleTemplate: '%s | Chris.dev',
 		meta: [
 			{
 				name: 'description',
@@ -72,8 +73,8 @@
 		link: [
 			{href: 'https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css', rel: 'stylesheet'}
 		]
-	})
+	});
+	
 </script>
-
 
 
