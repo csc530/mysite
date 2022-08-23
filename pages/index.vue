@@ -7,6 +7,8 @@
 <script setup lang="ts">
 	import HeroHome from '@/components/HeroHome.vue';
 	import Topic from "@/models/topic";
+	import {definePageMeta} from "#imports";
+	
 	
 	const christofer: Topic = {
 		title: 'Christofer Cousins',
@@ -27,6 +29,11 @@
 		content: 'more project work available upon request',
 		img: 'project.jpg',
 	};
+	
+	definePageMeta({
+		title: 'Home',
+		description: 'Home page of the website',
+	});
 	
 	
 	///todo: maybe add firebase access to load txt for all the topics of me

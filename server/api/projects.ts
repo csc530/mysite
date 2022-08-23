@@ -1,18 +1,18 @@
-import {defineEventHandler} from "h3";
 import {Octokit} from "@octokit/core";
 import Columnable from "~/models/columnContent";
+import {defineEventHandler} from "h3";
 import usersRepos = namespace.UsersRepos;
 
+const token = process.env.GITHUB_API_TOKEN;
 
 export default defineEventHandler(async (_event): Promise<{ private: Columnable[]; public: Columnable[] }> => {
-	//todo: get repos doesn't work in build
-	const octokit = new Octokit({"auth": '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'});
+	const octokit = new Octokit({"auth": token});
 	/*get public and private repos from GitHub; pre-mount*/
 	
 	const toColumns = (repos: any[]): Columnable[] => {
 		const arr = repos as usersRepos[];
 		return arr.map(repo => {
-			const col = <Columnable>{
+			return <Columnable>{
 				"name": repo.name.replaceAll('-', ' '),
 				"description": repo.description,
 				"url": repo.html_url,
@@ -24,8 +24,6 @@ export default defineEventHandler(async (_event): Promise<{ private: Columnable[
 					return `${repo.name} - ${repo.description}`;
 				}
 			};
-			console.log(JSON.stringify(repos[0]));
-			return col;
 		});
 	};
 	const getRepos = async (visibility: "all" | "public" | "private" | undefined): Promise<Columnable[]> => {
@@ -36,11 +34,21 @@ export default defineEventHandler(async (_event): Promise<{ private: Columnable[
 		return toColumns(response);
 	};
 	
-	
-	const publicRepos = await getRepos("public");
-	const privateRepos = await getRepos("private");
-	return {
-		"public": publicRepos,
-		"private": privateRepos,
-	};
+	try {
+		const publicRepos = await getRepos("public");
+		const privateRepos = await getRepos("private");
+		return {
+			"public": publicRepos,
+			"private": privateRepos,
+		};
+	}
+	catch(e) {
+		console.dir(e);
+		let template = `<h1>::title::</h1><h2>::subtitle::</h2><p>::error::</p>`;
+		const title = e.message + ': ' + e.status
+		//todo figure out a way to redirect to an error page or return an error
+		const err = template.replace('::title::', title)
+		                    .replace('::subtitle::', e.message)
+		                    .replace('::error::', e.stack);
+	}
 });
