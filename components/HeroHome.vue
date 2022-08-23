@@ -1,10 +1,9 @@
 <template>
 	<!-- Hero content: will be in the middle -->
-	<h1 class="title">{{ currentTopic.title }}</h1>
 	<article class="is-flex-grow-2">
 		<p class="is-size-5">{{ currentTopic.content }}</p>
 		<figure class="image  is-centered">
-			<img v-if="currentTopic.img" :alt="currentTopic?.alt" :src="getImg(currentTopic.img)" class="has-ratio " />
+			<img v-if="currentTopic.img" :alt="currentTopic?.alt" :src="(getImg(currentTopic.img))" class="has-ratio " />
 		</figure>
 	</article>
 	<nav class="tabs is-boxed is-dark is-inverted has-text-centered is-fullwidth is-medium">
@@ -26,24 +25,25 @@
 
 <script lang="ts" setup>
 	import {ref} from "vue";
-	import Topic from "@/models/topic";
+	import Topic from "../models/topic";
 	
 	const props = defineProps<{
 		topics: Topic[];
 	}>();
 	const currentTopic = ref(props.topics[0]);
 	const getImg = (img: string) => {
-		try {
-			return require('@/assets/images/' + img)
+		const old = async (img) => {
+			// const src = await import(/* @vite-ignore */`./assets/images/${img}`);
+			// console.log(src, img);
+			// src.default = src.default.replace(/^\/@fs/, '')
 		}
-		catch(e) {
-			console.error(e);
-			return undefined;
-		}
+		return 'assets/images/'.concat(img);
 	};
+	
 	
 	function activeTopic(index: Topic) {
 		return index === currentTopic.value ? 'has-text-weight-bold is-active' : '';
 	}
 
 </script>
+
