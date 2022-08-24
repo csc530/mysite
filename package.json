@@ -2,9 +2,10 @@
 	"private": true,
 	"scripts": {
 		"build": "doppler run -- nuxt build",
-		"dev": "doppler run -- nuxt dev -o --clipboard",
+		"dev": "doppler run -- nuxt dev -o --clipboard --debug",
 		"generate": "doppler run -- nuxt generate",
-		"preview": "doppler run -- nuxt preview"
+		"preview": "doppler run -- nuxt preview",
+		"deploy": "doppler run -- nuxt build && firebase deploy --only hosting"
 	},
 	"devDependencies": {
 		"@emailjs/browser": "^3.6.2",

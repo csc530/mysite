@@ -10,4 +10,5 @@ export default defineNuxtConfig({
 	},
 	builder: "vite",
 	editor: 'webstorm',
+	ssr: false,
 })
