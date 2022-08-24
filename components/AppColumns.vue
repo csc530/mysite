@@ -13,7 +13,7 @@
 
 <script lang="ts" setup>
 	import Columnable, {ColumnHeader} from "@/models/columnContent";
-	import BaseHeader from "@/components/BaseHeader.vue";
+	import BaseHeader from "~/components/AppHeader.vue";
 	
 	const props = defineProps<{
 		data: Columnable[],

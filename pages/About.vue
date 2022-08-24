@@ -2,9 +2,9 @@
 	<main class="content">
 		<h1 class="title">All about me</h1>
 		<!--TODO: Three images with text representing me-->
-		<base-columns v-bind:data="aboutMe">
+		<app-columns v-bind:data="aboutMe">
 			<template #default="{title,content,list}">
-				<base-card>
+				<app-card>
 					<template v-slot:header>
 						<h2>{{ title }}</h2>
 					</template>
@@ -14,9 +14,9 @@
 							<p>{{ item }}</p>
 						</li>
 					</ul>
-				</base-card>
+				</app-card>
 			</template>
-		</base-columns>
+		</app-columns>
 	</main>
 
 </template>
@@ -26,8 +26,6 @@
 </style>
 <script lang="ts" setup>
 	
-	import BaseCard from "@/components/BaseCard.vue";
-	import BaseColumns from '@/components/BaseColumns.vue';
 	import Columnable from '@/models/columnContent';
 	
 	interface AboutColumn extends Columnable {

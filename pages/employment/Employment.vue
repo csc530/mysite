@@ -1,9 +1,9 @@
 <template>
 	<main>
 		<h1>My employment History</h1>
-		<base-columns :data="employment">
+		<app-columns :data="employment">
 			<template #default="{title,tasks,address, term}">
-				<base-card :footer-items="[term.join(' - '),address,]">
+				<app-card :footer-items="[term.join(' - '),address,]">
 					<template v-slot:header>
 						<h2>{{ title }}</h2>
 					</template>
@@ -16,9 +16,9 @@
 						<time v-if="data.includes(' - ')">{{ data }}</time>
 						<address v-else>{{ data }}</address>
 					</template>
-				</base-card>
+				</app-card>
 			</template>
-		</base-columns>
+		</app-columns>
 	</main>
 </template>
 
@@ -27,9 +27,7 @@
 </style>
 
 <script lang="ts" setup>
-	import BaseCard from '@/components/BaseCard.vue';
 	import Columnable from "@/models/columnContent";
-	import BaseColumns from "@/components/BaseColumns.vue";
 	
 	useRoute().meta.title = 'Employment';
 	
