@@ -1,3 +1,4 @@
 {
-	"BracketHighlighter.enableExtension": true
+	"BracketHighlighter.enableExtension": true,
+	"nuxt.isNuxtApp": true
 }
