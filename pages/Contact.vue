@@ -1,5 +1,5 @@
 <template>
-	<main>
+	<main class="content">
 		<form v-if="!loading" accept-charset="UTF-8" action="" autocomplete="on" enctype="text/plain" method="post"
 		      name="contactForm" @submit="submit">
 			<h1>Hit me up!</h1>
@@ -39,7 +39,7 @@
 	const sentSuccess = (response: EmailJSResponseStatus) => {
 		loading.value = false;
 		console.log(response);
-		navigateTo({name: 'success'}, {});// router.push(router.resolve('success'));
+		navigateTo({name: 'success'}, {});
 	};
 	const sendFailure = (error: any) => {
 		loading.value = false;

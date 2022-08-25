@@ -1,17 +1,18 @@
 <template>
-	<!-- Hero footer: will stick at the bottom -->
-	<footer class="hero-foot is-dark">
+	<footer class="hero-foot is-fullwidth has-text-centered">
+		<!-- Hero footer: will stick at the bottom -->
 		<ul class="columns is-multiline">
-			<li v-for="link in links">
+			<li class="column" v-for="link in links">
 				<a :href="link.href">
-					<i v-if="link.icon" :class="link.icon"></i>
+					<font-awesome-icon :icon="link.icon" size="m" color="#aa3344" />
 				</a>
 			</li>
 		</ul>
+		<p><small>The site made courtesy of yours truly <strong>Christofer Cousins 😁</strong></small></p>
 	</footer>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 	const links = [
 		{
 			href: '#',
@@ -36,7 +37,3 @@
 	];
 
 </script>
-
-<style scoped>
-
-</style>

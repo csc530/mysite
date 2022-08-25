@@ -1,6 +1,6 @@
 <template>
-	<!-- Hero head: will stick at the top -->
 	<header class="navbar hero-head ml-1 mr-1">
+		<!-- Hero head: will stick at the top -->
 		<div class=" navbar-brand is-align-content-center is-flex">
 			<p class="title m-auto"><strong>Christofer Cousins</strong></p>
 			
@@ -12,15 +12,13 @@
 		</div>
 		
 		<nav id="navbarMenuHeroC" class="navbar-menu navbar-end">
+			<!--Create iterative sublist for child routes-->
 			<NuxtLink v-for="route in rootRoutes" :to="route.path" class="navbar-item">
-				<!--Create iterative sublist for child routes-->
 				{{ route.name }}
 			</NuxtLink>
 		</nav>
 	</header>
 </template>
-
-<style scoped></style>
 
 <script lang="ts" setup>
 	
