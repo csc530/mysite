@@ -3,4 +3,5 @@ export default interface Topic {
 	content: string;
 	img?: string;
 	alt?: string;
+	isActive?: boolean;
 }
