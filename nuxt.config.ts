@@ -10,4 +10,10 @@ export default defineNuxtConfig({
 	},
 	builder: "vite",
 	editor: 'webstorm',
+	css: ['bulma', '@fortawesome/fontawesome-svg-core/styles.css'],
+	store: false,
+	experimental: {
+		reactivityTransform: true
+	},
+	router: {}
 })
