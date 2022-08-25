@@ -16,6 +16,7 @@
 	},
 	"dependencies": {
 		"@octokit/core": "^4.0.5",
-		"bulma": "^0.9.4"
+		"bulma": "^0.9.4",
+		"sass": "^1.54.5"
 	}
 }
