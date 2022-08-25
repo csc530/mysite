@@ -1,11 +1,11 @@
 <template>
 	<div class="hero is-flex-grow-1 is-flex-direction-column">
-		<article class="is-flex-grow-1 hero-body is-flex-direction-column is-boxed">
-			<p class="is-size-5">{{ currentTopic.content }}</p>
-			<img v-if="currentTopic.img" :alt="currentTopic?.alt" :src="(getImg(currentTopic.img))"
-			     class="image is-centered has-ratio " />
+		<article class="hero-body is-flex-direction-column is-flex-grow-1">
+			<p class="is-size-5 has-text-left ">{{ currentTopic.content }}</p>
+			<img v-if="currentTopic.img" :alt="currentTopic?.alt" :src="getImg(currentTopic.img)"
+			     class="image is-centered has-ratio" />
 		</article>
-		<nav class="hero-foot tabs is-boxed has-text-centered is-fullwidth is-medium">
+		<nav class="hero-foot tabs is-boxed has-text-centered is-fullwidth">
 			<ul class="subtitle">
 				<!--todo: createApp functionality topics have TheNavbar active TODO something isHome routing-->
 				<li v-for="(topic, index) in topics" :class="isActiveTopic(topic)" @click="switchTopic(topic)">
@@ -21,6 +21,11 @@
 		max-width : 15rem;
 		height    : auto;
 	}
+	
+	div.hero.is-flex-grow-1.is-flex-direction-column, p {
+		width : 100%;
+	}
+	
 </style>
 
 <script lang="ts" setup>
