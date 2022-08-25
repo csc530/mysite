@@ -1,9 +1,11 @@
 <template>
-	<div id="nuxt wrapper" class="hero hero-body">
+	<div id="nuxt-wrapper" class="hero is-fullheight">
 		<the-navbar />
-		<NuxtPage :page-key="$route.fullPath" />
+		<main id="mainHeroBody" class="hero-body is-flex-direction-column">
+			<NuxtPage :page-key="$route.fullName" />
+		</main>
 		<the-footer />
-		✝️🧠🍁👽
+		<!--		✝️🧠🍁👽-->
 	</div>
 </template>
 
@@ -45,25 +47,55 @@
 	$control-border-width: 2px
 	
 	// Import only what you need from Bulma
-	@import "bulma/sass/utilities/_all.sass"
+	//@import "bulma/sass/utilities/_all.sass"
 	@import "bulma/sass/base/_all.sass"
-	@import "bulma/sass/elements/button.sass"
-	@import "bulma/sass/elements/container.sass"
-	@import "bulma/sass/elements/title.sass"
-	@import "bulma/sass/form/_all.sass"
-	@import "bulma/sass/components/navbar.sass"
-	@import "bulma/sass/layout/hero.sass"
-	@import "bulma/sass/layout/section.sass"
+	//@import "bulma/sass/elements/button.sass"
+	//@import "bulma/sass/elements/container.sass"
+	//@import "bulma/sass/elements/title.sass"
+	//@import "bulma/sass/form/_all.sass"
+	//@import "bulma/sass/components/navbar.sass"
+	//@import "bulma/sass/layout/hero.sass"
+	//@import "bulma/sass/layout/section.sass"
+	
+	main.hero-body.is-boxed#mainHeroBody
+		//display: block
 </style>
 
 <script lang="ts" setup>
-	import {useHead,} from "#imports";
+	import {definePageMeta, useHead,} from "#imports";
 	import TheNavbar from "~/components/TheNavbar.vue";
 	import TheFooter from "~/components/TheFooter.vue";
 	
+	// Import the functions you need from the SDKs you need
+	import {initializeApp,} from "firebase/app";
+	import {getAnalytics, isSupported} from "firebase/analytics";
+	import {FirebaseOptions} from "@firebase/app-types";
+	
+	// TODO: Add SDKs for Firebase products that you want to use
+	// https://firebase.google.com/docs/web/setup#available-libraries
+	
+	// Your web app's Firebase configuration
+	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+	const firebaseConfig: FirebaseOptions = {
+		apiKey: import.meta.env.VITE_FIREBASE_API_KEY.toString(),
+		authDomain: "csc-page.firebaseapp.com",
+		projectId: "csc-page",
+		storageBucket: "csc-page.appspot.com",
+		messagingSenderId: "208420085066",
+		appId: "1:208420085066:web:a89afe592c4cb27093b5b3",
+		measurementId: "G-HJM736L47K"
+	};
+	
+	// Initialize Firebase
+	const app = initializeApp(firebaseConfig);
+	let analytics = null;
+	if(await isSupported() === true)
+		analytics = getAnalytics(app);
+	app.automaticDataCollectionEnabled = true;
+	
+	
 	useHead({
-		title: 'Home.js',
-		titleTemplate: '%s | Chris.dev',
+		titleTemplate: (title: string) => title ? title + ' | Chris.dev' : 'My Portfolio | Chris.dev',
 		meta: [
 			{
 				name: 'description',
@@ -71,10 +103,20 @@
 			}
 		],
 		link: [
-			{href: 'https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css', rel: 'stylesheet'}
+			// {href: 'https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css', rel: 'stylesheet'}
+		],
+		script: [
+			{src: "https://kit.fontawesome.com/f6ae6b9ec4.js", crossorigin: "anonymous"}
 		]
 	});
 	
+	definePageMeta(
+			{
+				pageTransition: false,
+				layoutTransition: false,
+				key: route => route.fullPath,
+			}
+	);
 </script>
 
 
