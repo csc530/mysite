@@ -3,7 +3,6 @@
 </template>
 
 <script setup>
-	name = 'Skills';
 
 </script>
 

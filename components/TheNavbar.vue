@@ -16,13 +16,22 @@
 			<NuxtLink v-for="route in rootRoutes" :to="route.path" class="navbar-item">
 				{{ route.name }}
 			</NuxtLink>
+			<div v-for="parent in Object.keys(childRoutesStructure)" class="has-dropdown navbar-item is-hoverable">
+				<a class="navbar-link">{{ parent }}</a>
+				<div class="navbar-dropdown is-right">
+					<NuxtLink v-if="Array.isArray(childRoutesStructure[parent])" v-for="route in childRoutesStructure[parent]"
+					          :to="route.path" class="navbar-item">
+						{{ route.name }}
+					</NuxtLink>
+				</div>
+			</div>
 		</nav>
 	</header>
 </template>
 
 <script lang="ts" setup>
 	
-	import {computed, useRouter} from "#imports";
+	import {useRouter} from "#imports";
 	import {$computed} from "vue/macros";
 	
 	
@@ -41,48 +50,27 @@
 	const rootRoutes = $computed(() => {
 		return routes.filter(route => route.path.lastIndexOf("/") === 0 && route.name !== "404");
 	});
-	const childRoutes = $computed(() => {
+	const childRoutesStructure = $computed(() => {
 		const children = routes.filter(route => route.path.lastIndexOf("/") !== 0);
-		console.log(children);
 		
-		/*
-		const emptyobj = {};
-		const pathList = [...]
-		const ancestry = [emptyobj];
-		for(each child route in pathList)
-		{
-		if(last child route in pathList)
-		{
-		ancestry[i][pathList[i-1]] = pathList[i] //AKA child route;
-		}
-		else{
-		const child = {};
-		ancestry[i][pathLsit[i]] = child;
-		ancestry.push(child);
-		}
-		}
-		 */
 		const struct = {};
 		children.forEach(child => {
 			const pathList = child.path.split('/');
+			
 			//remove dummy empty string from pathList
 			pathList.shift();
-			
 			const ancestry = [struct];
+			
 			for(let i = 0; i < pathList.length; i++) {
 				if(i === pathList.length - 1) {
-					if(Array.isArray(ancestry[i - 1][pathList[i - 1]])) {
-						ancestry[i - 1][pathList[i - 1]].push(pathList[i]);
-					}
-					else {
-						ancestry[i - 1][pathList[i - 1]] = [pathList[i]];
-					}
-					// Object.hasOwn(ancestry[i - 1], pathList[i]) ? (<string[]>ancestry[i][pathList[i]]).push(pathList[i]) : ancestry[i][pathList[i]] = [pathList[i]];
+					if(Array.isArray(ancestry[i - 1][pathList[i - 1]]))
+						ancestry[i - 1][pathList[i - 1]].push(child);
+					else
+						ancestry[i - 1][pathList[i - 1]] = [child];
 				}
 				else {
-					if(Object.hasOwn(ancestry[i], pathList[i])) {
+					if(Object.hasOwn(ancestry[i], pathList[i]))
 						ancestry.push(ancestry[i][pathList[i]]);
-					}
 					else {
 						const kid = {};
 						ancestry[i][pathList[i]] = kid;
@@ -92,12 +80,6 @@
 			}
 		});
 		return struct;
-	});
-	
-	console.dir(childRoutes);
-	
-	const getParents = computed(() => {
-		return childRoutes.map(route => route.path.split("/")[1]);
 	});
 </script>
 
