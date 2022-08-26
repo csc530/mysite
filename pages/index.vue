@@ -94,7 +94,7 @@
 		if(route.hash)
 			currentTopic = topics.find(topic => topic.title === route.hash.slice(1));
 		if(!currentTopic || !route.hash) {
-			currentTopic = topics[rand(0, topics.length)];
+			currentTopic = topics[rand(0, topics.length - 1)];
 			navigateTo('/#'.concat(currentTopic.title), {replace: true});
 		}
 	});
