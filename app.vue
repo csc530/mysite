@@ -5,7 +5,6 @@
 			<NuxtPage :page-key="$route.fullName" />
 		</main>
 		<the-footer />
-		<!--		✝️🧠🍁👽-->
 	</div>
 </template>
 
@@ -57,8 +56,6 @@
 	//@import "bulma/sass/layout/hero.sass"
 	//@import "bulma/sass/layout/section.sass"
 	
-	main.hero-body.is-boxed#mainHeroBody
-		//display: block
 </style>
 
 <script lang="ts" setup>
