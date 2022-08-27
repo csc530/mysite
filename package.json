@@ -11,6 +11,7 @@
 	"devDependencies": {
 		"@emailjs/browser": "^3.6.2",
 		"@nuxt/ui": "^0.2.0",
+		"doppler": "^1.0.0",
 		"firebase": "^9.9.3",
 		"nuxt": "npm:nuxt3@latest"
 	},

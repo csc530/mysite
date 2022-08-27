@@ -103,7 +103,8 @@
 			// {href: 'https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css', rel: 'stylesheet'}
 		],
 		script: [
-			{src: "https://kit.fontawesome.com/f6ae6b9ec4.js", crossorigin: "anonymous"}
+			{src: "https://kit.fontawesome.com/f6ae6b9ec4.js", crossorigin: "anonymous"},
+				{src: "/bulma.js", async: true, type: "text/javascript"},
 		]
 	});
 	

@@ -2,7 +2,9 @@
 	<header class="navbar hero-head ml-1 mr-1">
 		<!-- Hero head: will stick at the top -->
 		<div class=" navbar-brand is-align-content-center is-flex">
+			<img src="public/bitmoji_sipping%20tea.png" alt="Bitmoji of myself waving hi" class="is-64x64 image is-rounded" />
 			<p class="title m-auto"><strong>Christofer Cousins</strong></p>
+			
 			
 			<div class="navbar-burger" data-target="navbarMenuHeroC">
 				<span></span>
