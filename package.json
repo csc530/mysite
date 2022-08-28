@@ -2,10 +2,10 @@
 	"private": true,
 	"scripts": {
 		"build": "nuxt build",
-		"dev": "doppler run -- nuxt dev -o --clipboard --debug",
-		"generate": "doppler run -- nuxt generate",
-		"preview": "doppler run -- nuxt preview",
-		"deploy": "doppler run -- nuxt build && firebase deploy --only hosting",
+		"dev": "doppler run --debug -- nuxt dev -o --clipboard --debug",
+		"generate": "doppler run --debug -- nuxt generate",
+		"preview": "doppler run --debug -- nuxt preview",
+		"deploy": "nuxt build && firebase deploy --only hosting",
 		"start": "node .output/server/index.mjs"
 	},
 	"devDependencies": {

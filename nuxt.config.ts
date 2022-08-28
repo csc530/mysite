@@ -2,11 +2,8 @@ import {defineNuxtConfig} from 'nuxt'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-	vite: {
-		vue: {reactivityTransform: true}
-	},
 	nitro: {
-		preset: 'heroku'
+		preset: 'vercel'
 	},
 	builder: "vite",
 	editor: 'webstorm',
@@ -15,5 +12,5 @@ export default defineNuxtConfig({
 	experimental: {
 		reactivityTransform: true
 	},
-	router: {}
+	sourcemap: true,
 })
