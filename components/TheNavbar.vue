@@ -1,11 +1,13 @@
 <template>
 	<header class="navbar hero-head ml-1 mr-1">
 		<!-- Hero head: will stick at the top -->
-		<div class=" navbar-brand is-align-content-center is-flex">
-			<img src="/bitmoji_sipping-tea.png" alt="Bitmoji of myself waving hi" class="is-64x64 image is-rounded" />
-			<p class="title m-auto"><strong>Christofer Cousins</strong></p>
-			
-			
+		<div class=" navbar-brand">
+			<NuxtLink :to="homeRoute.path" class="is-align-content-center is-flex">
+				<picture class="image is-64x64">
+					<img src="/bitmoji_sipping-tea.png" alt="Bitmoji of myself waving hi" class="is-rounded" />
+				</picture>
+				<p class="title m-auto"><strong>Christofer Cousins</strong></p>
+			</NuxtLink>
 			<div class="navbar-burger" data-target="navbarMenuHeroC">
 				<span></span>
 				<span></span>
@@ -15,18 +17,23 @@
 		
 		<nav id="navbarMenuHeroC" class="navbar-menu navbar-end">
 			<!--Create iterative sublist for child routes-->
-			<NuxtLink v-for="route in rootRoutes" :to="route.path" class="navbar-item">
-				{{ route.name }}
-			</NuxtLink>
-			<div v-for="parent in Object.keys(childRoutesStructure)" class="has-dropdown navbar-item is-hoverable">
-				<a class="navbar-link">{{ parent }}</a>
-				<div class="navbar-dropdown is-right">
-					<NuxtLink v-if="Array.isArray(childRoutesStructure[parent])" v-for="route in childRoutesStructure[parent]"
-					          :to="route.path" class="navbar-item">
-						{{ route.name }}
-					</NuxtLink>
+			<template v-for="(child, parent, index) in routes" :key="index">
+				<NuxtLink v-if="typeof child.path === 'string' && typeof child.name === 'string'" :to="child.path"
+				          class="navbar-item">
+					{{ child.name }}
+				</NuxtLink>
+				
+				<div v-else class="has-dropdown navbar-item is-hoverable">
+					<a class="navbar-link">{{ parent }}</a>
+					<div class="navbar-dropdown is-right">
+						<NuxtLink v-if="Array.isArray(routes[parent])" v-for="route in routes[parent]"
+						          :to="route.path" class="navbar-item">
+							{{ route.name }}
+						</NuxtLink>
+					</div>
 				</div>
-			</div>
+			
+			</template>
 		</nav>
 	</header>
 </template>
@@ -35,11 +42,13 @@
 	
 	import {useRouter} from "#imports";
 	import {$computed} from "vue/macros";
+	import {toTitleCase} from "~/utils/string";
 	
+	// todo: reduce complexity and clutter vars; I'm looking at you _routes
+	const _routes = useRouter().getRoutes();
 	
-	const routes = useRouter().getRoutes();
 	//rename index route to their nearest parent route
-	routes.forEach(route => {
+	_routes.forEach(route => {
 		if(typeof route.name === 'string') {
 			if(route.name.endsWith('index')) {
 				const split = route.name.split('-');
@@ -49,11 +58,11 @@
 				route.name = route.name.split('-').pop();
 		}
 	});
-	const rootRoutes = $computed(() => {
-		return routes.filter(route => route.path.lastIndexOf("/") === 0 && route.name !== "404");
-	});
-	const childRoutesStructure = $computed(() => {
-		const children = routes.filter(route => route.path.lastIndexOf("/") !== 0);
+	
+	const homeRoute = _routes.find(route => route.name === 'Home');
+	
+	const routes = $computed(() => {
+		const children = _routes.filter(route => route.path.lastIndexOf("/") !== 0);
 		
 		const struct = {};
 		children.forEach(child => {
@@ -81,7 +90,28 @@
 				}
 			}
 		});
-		return struct;
+		
+		//add root routes to the top of the structure
+		const rootRoutes = _routes.filter(route => route.path.lastIndexOf("/") === 0 && route.name !== "404");
+		rootRoutes.forEach(route => {
+			struct[route.name] = route;
+		});
+		delete struct['Home'];
+		
+		//recursively sort all object keys within struct not just root level
+		let keys={};
+		let sortedRoutes= {'Home': homeRoute};
+		Object.keys(struct).map(oldKey => {
+			const newKey = toTitleCase(oldKey);
+			keys[newKey] = oldKey
+			return newKey;
+		}).sort().forEach(key => {
+			const oldKey = keys[key];
+			sortedRoutes[key] = struct[oldKey];
+		});
+		console.log(keys,sortedRoutes);
+		// return done;
+		return sortedRoutes;
 	});
 </script>
 
