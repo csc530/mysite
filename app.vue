@@ -59,7 +59,7 @@
 </style>
 
 <script lang="ts" setup>
-	import {definePageMeta, useHead,} from "#imports";
+	import {definePageMeta, useHead, useRoute, useRouter,} from "#imports";
 	import TheNavbar from "~/components/TheNavbar.vue";
 	import TheFooter from "~/components/TheFooter.vue";
 	
@@ -67,6 +67,18 @@
 	import {initializeApp,} from "firebase/app";
 	import {getAnalytics, isSupported} from "firebase/analytics";
 	import {FirebaseOptions} from "@firebase/app-types";
+	
+	//rename index route to their nearest parent route
+	useRouter().getRoutes().forEach(route => {
+		if(typeof route.name === 'string') {
+			if(route.name.endsWith('index')) {
+				const split = route.name.split('-');
+				route.name = split.length > 1 ? split.slice(0, -1).pop() : 'Home';
+			}
+			else if(route.name.includes('-'))
+				route.name = route.name.split('-').pop();
+		}
+	});
 	
 	// TODO: Add SDKs for Firebase products that you want to use
 	// https://firebase.google.com/docs/web/setup#available-libraries
@@ -92,7 +104,7 @@
 	
 	
 	useHead({
-		titleTemplate: (title: string) => title ? title + ' | Chris.dev' : 'My Portfolio | Chris.dev',
+		titleTemplate: (title: string) => title ? title + ' | Chris.dev' : `${useRoute().name.toString()} | Chris.dev`,
 		meta: [
 			{
 				name: 'description',

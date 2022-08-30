@@ -1,5 +1,5 @@
 <template>
-	<header class="navbar hero-head ml-1 mr-1">
+	<header class="navbar hero-head">
 		<!-- Hero head: will stick at the top -->
 		<div class=" navbar-brand">
 			<NuxtLink :to="homeRoute.path" class="is-align-content-center is-flex">
@@ -47,17 +47,7 @@
 	// todo: reduce complexity and clutter vars; I'm looking at you _routes
 	const _routes = useRouter().getRoutes();
 	
-	//rename index route to their nearest parent route
-	_routes.forEach(route => {
-		if(typeof route.name === 'string') {
-			if(route.name.endsWith('index')) {
-				const split = route.name.split('-');
-				route.name = split.length > 1 ? split.slice(0, -1).pop() : 'Home';
-			}
-			else if(route.name.includes('-'))
-				route.name = route.name.split('-').pop();
-		}
-	});
+	
 	
 	const homeRoute = _routes.find(route => route.name === 'Home');
 	
@@ -101,9 +91,15 @@
 		//recursively sort all object keys within struct not just root level
 		let keys={};
 		let sortedRoutes= {'Home': homeRoute};
+		function sortObjKeys(obj, sortedKeys): object {
+			Object.keys(obj).map(oldKey => {
+				const newKey = toTitleCase(oldKey);
+			})
+			return sortObjKeys(obj, sortedKeys);
+		}
 		Object.keys(struct).map(oldKey => {
 			const newKey = toTitleCase(oldKey);
-			keys[newKey] = oldKey
+			keys[newKey] = oldKey;
 			return newKey;
 		}).sort().forEach(key => {
 			const oldKey = keys[key];
