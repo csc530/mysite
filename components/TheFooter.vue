@@ -2,7 +2,7 @@
 	<footer class="hero-foot is-fullwidth has-text-centered">
 		
 		<!-- Hero footer: will stick at the bottom -->
-		<ul class="tabs columns is-multiline">
+		<ul class="columns m-auto">
 			<li v-for="link in links" class="column">
 				<a :href="link.href" :title="link.title">
 					<font-awesome-icon :icon="link.icon" color="#aa3344" size="lg" />
