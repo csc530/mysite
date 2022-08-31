@@ -17,22 +17,25 @@
 </template>
 
 <script lang="ts" setup>
-	const links = [
-		{
-			href: 'mailto:csc530@vivaldi.net?subject=What did you wanna tell me???&body=Let me know in as many or as little words as you\'d like!😁',
-			icon: 'envelope',
-			title: 'Send me an email me',
-		},
-		{
-			href: '/resume.PDF',
-			icon: 'file-lines',
-			title: 'My resume'
-		},
-		{
-			href: 'https://github.com/csc530',
-			icon: 'fa-brands fa-github-alt',
-			title: 'My Github'
-		}
-	];
-
+	if(process.client)
+		links = [
+			{
+				href: 'mailto:csc530@vivaldi.net?subject=What did you wanna tell me???&body=Let me know in as many or as little words as you\'d like!😁',
+				icon: 'envelope',
+				title: 'Send me an email me',
+			},
+			{
+				href: '/resume.PDF',
+				icon: 'file-lines',
+				title: 'My resume'
+			},
+			{
+				href: 'https://github.com/csc530',
+				icon: 'fa-brands fa-github-alt',
+				title: 'My Github'
+			}
+		];
+	else
+		links = [];
+	var links;
 </script>
