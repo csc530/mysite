@@ -33,14 +33,14 @@
 <script lang="ts" setup>
 	/// Octokit.js	// https://github.com/octokit/core.js#readme
 	import {useLazyAsyncData, watch} from "#imports";
-	import {AppCard,AppColumns} from "#components";
+	import {AppCard, AppColumns} from "#components";
 	
-	const {data: projects} = $(useLazyAsyncData('projects',()=> $fetch('/api/projects')));
+	const {data: projects} = $(useLazyAsyncData('projects', () => $fetch('/api/projects')));
 	let publicRepos, privateRepos;
-	watch(()=>projects,()=> {
-		if(!projects)return
+	watch([projects?.public, projects?.private], () => {
+		if(!projects) return
 		publicRepos = projects.public;
 		privateRepos = projects.private;
-		console.log('projects changed');
-	},{deep: true,immediate: true});
+		console.log('projects changed', projects);
+	}, {deep: false, immediate: true});
 </script>
