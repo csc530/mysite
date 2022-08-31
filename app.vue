@@ -1,5 +1,8 @@
 <template>
 	<div id="nuxt-wrapper" class="hero is-fullheight">
+		<Head>
+			<Title>{{ pageTitle }}</Title>
+		</Head>
 		<the-navbar />
 		<main id="mainHeroBody" class="hero-body is-flex-direction-column">
 			<NuxtPage :page-key="$route.fullName" />
@@ -55,13 +58,14 @@
 	//@import "bulma/sass/components/navbar.sass"
 	//@import "bulma/sass/layout/hero.sass"
 	//@import "bulma/sass/layout/section.sass"
-	
+
 </style>
 
 <script lang="ts" setup>
-	import {definePageMeta, useHead, useRoute, useRouter,} from "#imports";
+	import {definePageMeta, useHead, useRouter, useState,} from "#imports";
 	import TheNavbar from "~/components/TheNavbar.vue";
 	import TheFooter from "~/components/TheFooter.vue";
+	import {Head, Title} from "#head/components";
 	
 	// Import the functions you need from the SDKs you need
 	import {initializeApp,} from "firebase/app";
@@ -78,6 +82,7 @@
 			else if(route.name.includes('-'))
 				route.name = route.name.split('-').pop();
 		}
+		route.meta.title = route.name;
 	});
 	
 	// TODO: Add SDKs for Firebase products that you want to use
@@ -102,9 +107,10 @@
 		analytics = getAnalytics(app);
 	app.automaticDataCollectionEnabled = true;
 	
+	const pageTitle = useState('page-title');
 	
 	useHead({
-		titleTemplate: (title: string) => title ? title + ' | Chris.dev' : `${useRoute().name.toString()} | Chris.dev`,
+		titleTemplate: (title: string) => title ? title + ' | Chris.dev' : `my portfolio | Chris.dev`,
 		meta: [
 			{
 				name: 'description',
@@ -116,7 +122,7 @@
 		],
 		script: [
 			{src: "https://kit.fontawesome.com/f6ae6b9ec4.js", crossorigin: "anonymous"},
-				{src: "/bulma.js", async: true, type: "text/javascript"},
+			{src: "/bulma.js", async: true, type: "text/javascript"},
 		]
 	});
 	

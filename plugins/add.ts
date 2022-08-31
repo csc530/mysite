@@ -18,6 +18,10 @@ export default defineNuxtPlugin(() => {
 	
 	addRouteMiddleware('add-meta', (to) => {
 		const {$config} = useNuxtApp()
+		to.meta.title = to.name;
+		const title = useState<string>('page-title');
+		title.value = to.name.toString();
+		console.log(to.meta);
 		// console.dir(to);
 	}, {global: true});
 	
