@@ -29,9 +29,9 @@
 </style>
 
 <script lang="ts" setup>
-	import Topic from "@/models/topic";
-	import {navigateTo, onMounted, useHead, useRoute} from "#imports";
-	import {rand} from "@vueuse/shared";
+	import {navigateTo, onMounted, useHead, useRoute} from '#imports';
+	import Topic from '@/models/topic';
+	import {rand} from '@vueuse/shared';
 	
 	useHead({
 		title: 'Home',
@@ -58,6 +58,26 @@
 		content: 'more project work available upon request',
 		img: 'project.jpg',
 	};
+	const christian = {
+		title: 'Christian',
+		content: 'I am a christian and was baptized in ... And God is the most important part in my life and I hope that I show that ',
+		img: 'christian.jpg',
+	};
+	const intellect = {
+		title: 'Intellect',
+		content: 'I have been good at math and science; able to grasp new concepts and subject quickly.',
+		img: 'intellect.jpg',
+	};
+	const canadian = {
+		title: 'Canadian',
+		content: 'I am a Canadian and I am a big fan of the Canadian flag and the Canadian flag is my favorite thing to do. GitHub copilot wrote that last sentence 🙃',
+		img: 'canadian.jpg',
+	};
+	const alien = {
+		title: 'Alien',
+		content: 'Why alien, well afraid said it describes but yeah. I was born on Earth to 2 humans parents (to my knowledge) but I am quite peculiar and socially more rough and jaded than those around me, AT FIRST. But honestly I found most people do like me if the stick around. save E.T.'
+	};
+	
 	const topics: Topic[] = [
 		christofer,
 		student,

@@ -2,7 +2,7 @@
 	<footer class="hero-foot is-fullwidth has-text-centered">
 		
 		<!-- Hero footer: will stick at the bottom -->
-		<ul class="columns m-auto">
+		<ul class="columns is-multiline tabs m-auto">
 			<li v-for="link in links" class="column">
 				<a :href="link.href" :title="link.title">
 					<font-awesome-icon :icon="link.icon" color="#aa3344" size="lg" />
@@ -15,6 +15,12 @@
 	
 	</footer>
 </template>
+
+<style>
+	footer > ul.columns.tabs > li.column > a {
+		border : none;
+	}
+</style>
 
 <script lang="ts" setup>
 	if(process.client)
