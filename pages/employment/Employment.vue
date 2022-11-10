@@ -27,6 +27,7 @@
 </style>
 
 <script lang="ts" setup>
+	import {useRoute} from '#imports';
 	import Columnable from "@/models/columnContent";
 	
 	useRoute().meta.title = 'Employment';
@@ -62,7 +63,6 @@
 		address: "99 Wellesley St, Toronto, ON",
 		term: ['2022-05-16', '2022-09-02']
 	};
-	
 	const camp: EmploymentColumn = {
 		title: 'Gospel Arts Camp',
 		tasks: ['Organized and lead guided group activities with campers.', 'Collaborated with other camp counsellors to design fun and enriching learning activities for campers.', 'Provided campers with resources and support to help them develop their skills and interests.', 'Maintained facility and equipment to promote safe and secure environment for campers and staff',
