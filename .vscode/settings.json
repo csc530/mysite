@@ -1,7 +1,0 @@
-{
-	"BracketHighlighter.enableExtension": true,
-	"nuxt.isNuxtApp": false,
-	"conventionalCommits.scopes": [
-		"layouts"
-	]
-}
