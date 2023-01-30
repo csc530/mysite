@@ -1,0 +1,11 @@
+@media (prefers-color-scheme: light){
+    body {
+        background-color: #bebebe;
+        color: #333;
+    }
+
+    body :is(li, a):hover {
+        border-color: #321;
+    }
+
+}

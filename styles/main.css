@@ -1,0 +1,8 @@
+@layer base,theme;
+@import 'old.css' layer(base);
+@import 'dark.css' layer(theme);
+@import 'light.css' layer(theme);
+
+:root {
+    --cc: red;
+}
