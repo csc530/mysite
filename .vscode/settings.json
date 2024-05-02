@@ -1,6 +1,9 @@
 {
-    "conventionalCommits.scopes": [
-        "Site",
-        "content"
-    ]
+  "conventionalCommits.scopes": [
+    "Site",
+    "content"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  }
 }
