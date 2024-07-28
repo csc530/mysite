@@ -3,7 +3,10 @@
 </script>
 
 <template>
-    <main>
         <TheWelcome/>
-    </main>
+        <ul>
+            <li>Vuebulma</li>
+            <li>Resumer</li>
+            <li>this totally amazing awesome site :DDD</li>
+        </ul>
 </template>
