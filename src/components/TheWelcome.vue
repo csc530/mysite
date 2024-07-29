@@ -1,11 +1,11 @@
 <template>
-    <section class="hero has-text-centered">
+    <section class="hero has-text-centered is-fullheight ">
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">[be] in awee</h1>
                 <!--    and my pfp is spinning in the middle with radiance-->
                 <!--    surrounded by stars? gifs??-->
-                <img alt="" />
+                <img alt=""  src=""/>
 
                 <h2 class="subtitle">Christofer: <span ref="attrRef"></span></h2>
             </div>
@@ -39,7 +39,8 @@
         "code monkey",
         "prime programmer",
         "red-onkulous",
-        "REACT-HATER"
+        "REACT-HATER",
+        "Vue💚Lover"
     ]);
 
     const attribute = ref(attributes.value[Math.random() * attributes.value.length | 0]);
