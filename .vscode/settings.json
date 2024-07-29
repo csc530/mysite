@@ -5,5 +5,9 @@
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit"
-  }
+  },
+  "css.styleSheets": [
+    "https://cdn.jsdelivr.net/npm/bulma/css/bulma.min.css"
+  ],
+  "BracketHighlighter.enableExtension": false
 }

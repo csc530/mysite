@@ -19,5 +19,6 @@ export default defineConfig({
     },
     experimental: {
         hmrPartialAccept: true
-    }
+    },
+    appType: "spa",
 });

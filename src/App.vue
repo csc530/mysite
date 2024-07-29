@@ -10,16 +10,19 @@
     </div>
 </template>
 
-<style scoped>
+
+<style scoped lang="css">
     div {
         min-height: 100vh;
     }
 </style>
 
 <script setup lang="ts">
-    import {RouterLink, RouterView} from "vue-router";
+    import { RouterLink, RouterView } from "vue-router";
     import HelloWorld from "./components/HelloWorld.vue";
-    import {getActivePinia} from "pinia";
+    import { getActivePinia } from "pinia";
     import TheNav from "@/components/TheNav.vue";
     import TheFoot from "@/components/TheFoot.vue";
+
+    document.documentElement.dataset.theme = "latte";
 </script>
