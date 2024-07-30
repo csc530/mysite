@@ -1,0 +1,41 @@
+@use "@catppuccin/palette/scss/catppuccin"
+@use "sass:map"
+//@use "bulma/sass" as bulma;
+//@use "bulma/sass/utilities/css-variables" as cv;
+//@use "bulma/sass/themes/setup";
+
+$flavour: map-get(
+        $map: catppuccin.$palette,
+        $key: "frappe"
+)
+
+@use "bulma/sass" as bulma with (
+// colours
+$orange: map-get($map: $flavour, $key: "peach"),
+$yellow: map-get($map: $flavour, $key: "yellow"),
+$green: map-get($map: $flavour, $key: "green"),
+$turquoise: map-get($flavour, "teal"),
+$cyan: map-get($map: $flavour, $key: "sky"),
+$blue: map-get($map: $flavour, $key: "blue"),
+$purple: map-get($map: $flavour, $key: "lavender"),
+// $pink: map-get($map: $flavour, $key: "pink"),
+$red: map-get($map: $flavour, $key: "red"),
+//elements
+$text: map-get($map: $flavour, $key: "text"),
+$background: map-get($map: $flavour, $key: "crust"),
+// grays
+$black: map-get($map: $flavour, $key: "crust"),
+$black-bis: map-get($map: $flavour, $key: "mantle"),
+$black-ter: map-get($map: $flavour, $key: "base"),
+$grey-darker: map-get($map: $flavour, $key: "surface0"),
+$grey-dark: map-get($map: $flavour, $key: "surface1"),
+$grey: map-get($map: $flavour, $key: "surface2"),
+$grey-light: map-get($map: $flavour, $key: "overlay0"),
+$grey-lighter: map-get($map: $flavour, $key: "overlay1"),
+$grey-lightest: map-get($map: $flavour, $key: "overlay2"),
+$white-ter: map-get($map: $flavour, $key: "subtext0"),
+$white-bis: map-get($map: $flavour, $key: "subtext1"),
+$white: map-get($map: $flavour, $key: "text"),
+
+
+)
