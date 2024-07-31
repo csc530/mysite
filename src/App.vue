@@ -18,11 +18,8 @@
 </style>
 
 <script setup lang="ts">
-    import { RouterLink, RouterView } from "vue-router";
-    import HelloWorld from "./components/HelloWorld.vue";
-    import { getActivePinia } from "pinia";
+    import { RouterView } from "vue-router";
     import TheNav from "@/components/TheNav.vue";
     import TheFoot from "@/components/TheFoot.vue";
 
-    document.documentElement.dataset.theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "mocha" : "latte";
 </script>
