@@ -20,6 +20,12 @@
             </div>
         </div>
 
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <img @click="toggleTheme" :src="themeIcons[theme]" alt="theme icon" decoding="auto" loading="lazy" />
+            </div>
+        </div>
+
     </nav>
 </template>
 
@@ -29,7 +35,7 @@
 
 <script setup lang="ts">
     import {useRoute, useRouter} from "vue-router";
-    import {type Events, ref} from "vue";
+    import {computed, type Events, ref} from "vue";
 
     const router = useRouter();
     const routes = router.getRoutes();
@@ -40,6 +46,23 @@
         navMenuRef.value?.classList.toggle("is-active");
         if(hamburgerRef.value)
             hamburgerRef.value.ariaExpanded = String(hamburgerRef.value.classList.toggle("is-active"));
+    }
+
+    enum Theme {
+        latte = "latte",
+        mocha = "mocha",
+    }
+
+    const themeIcons = {
+      [Theme.latte]: "https://github.com/catppuccin/catppuccin/blob/main/assets/logos/exports/latte_squircle.png?raw=true",// 'https://github.com/catppuccin/catppuccin/blob/18acd8f58d49b551eb8cc0ff035a006d605c9905/assets/logos/exports/latte_squircle.png?raw=true',
+      [Theme.mocha]: "https://github.com/catppuccin/catppuccin/blob/18acd8f58d49b551eb8cc0ff035a006d605c9905/assets/logos/exports/macchiato_squircle.png?raw=true"
+    };
+    const theme = ref(window.matchMedia("(prefers-color-scheme: dark)").matches ? Theme.mocha : Theme.latte);
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", event => theme.value = event.matches ? Theme.mocha : Theme.latte);
+
+    function toggleTheme() {
+        theme.value = theme.value === Theme.latte ? Theme.mocha : Theme.latte;
+        document.documentElement.setAttribute("data-theme", theme.value);
     }
 
 </script>

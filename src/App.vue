@@ -24,5 +24,5 @@
     import TheNav from "@/components/TheNav.vue";
     import TheFoot from "@/components/TheFoot.vue";
 
-    document.documentElement.dataset.theme = "latte";
+    document.documentElement.dataset.theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "mocha" : "latte";
 </script>
