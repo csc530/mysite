@@ -9,5 +9,8 @@
   "css.styleSheets": [
     "https://cdn.jsdelivr.net/npm/bulma/css/bulma.min.css"
   ],
-  "BracketHighlighter.enableExtension": false
+  "BracketHighlighter.enableExtension": false,
+  "cSpell.words": [
+    "Puccin"
+  ]
 }
