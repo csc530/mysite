@@ -31,9 +31,9 @@
 
 <script setup lang="ts">
     import { useRouter } from "vue-router";
-    import { ref, } from "vue";
+    import { computed, ref, watch, } from "vue";
     import { PuccinTheme } from "@/types/helper";
-    import { useColorMode, usePreferredDark } from "@vueuse/core";
+    import { useColorMode } from "@vueuse/core";
 
     const router = useRouter();
     const routes = router.getRoutes();
@@ -55,14 +55,18 @@
             return this.latte;
         }
     };
-    const colourTheme = useColorMode({
+    const { system: systemColourTheme, store: storeColourTheme, state: colourState } = useColorMode({
         attribute: "data-theme",
-        modes: PuccinTheme
+        modes: PuccinTheme,
     });
+    const colourTheme = computed(() => storeColourTheme.value === 'auto' ? systemColourTheme.value : systemColourTheme.value === 'light' ? PuccinTheme.latte : PuccinTheme.mocha);
+
+    // ? if the prefferedColourScheme changes from outside the component (i.e. system/browser prefs.)
+    watch(colourTheme, () => {
+        storeColourTheme.value = colourTheme.value;
+    })
 
     function toggleTheme() {
-        colourTheme.value = colourTheme.value === PuccinTheme.latte ? PuccinTheme.mocha : PuccinTheme.latte;
+        storeColourTheme.value = storeColourTheme.value === PuccinTheme.latte ? PuccinTheme.mocha : PuccinTheme.latte;
     }
-
-    colourTheme.value = usePreferredDark() ? PuccinTheme.mocha : PuccinTheme.latte;
 </script>

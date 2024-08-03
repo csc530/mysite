@@ -8,8 +8,12 @@
         <h2 class="title is-2">Schooling🎓</h2>
         <ol>
             <li>
-                <h3 class="title is-3">Lakehead University & Georgian College</h3>
-                <p class="subtitle is-3">Computer Science & Computer Programming</p>
+                <h3 class="title is-3">Lakehead University <img
+                        srcset="https://www.lakeheadgeorgian.ca/wp-content/uploads/2018/02/cropped-lakehead-georgian-favicon.png, /src/assets/images/cropped-lakehead-georgian-favicon.png"
+                        alt="lakehead-Georgian logo" width="48"> Georgian College</h3>
+                <p class="subtitle is-3"><a href="https://www.lakeheadgeorgian.ca/programs/computer-science/"
+                        rel="noopener" referrerpolicy="origin-when-cross-origin">Computer Science & Computer
+                        Programming</a></p>
                 <p>Honours bachelor's (BsC) of Science</p>
                 <time datetime="2020-2024">2020 - 2024</time>
                 <p></p>
@@ -34,6 +38,7 @@
     import ProjectsView from "@/views/ProjectsView.vue";
     import IconListSection from "@/views/IconListSection.vue";
     import type { IconListSectionProps } from "@/types/iconListSection";
+
 
     const languages = [
         "vuejs",

@@ -10,17 +10,28 @@
             <section class="section">
                 <h2 class="subtitle is-7">Acknowledgements, Thx, Credits</h2>
                 <ul class="is-flex is-flex-direction-row is-gap-3 is-justify-content-space-around">
-                    <li title="bulma"><a href="https://bulma.io"><img
+                    <li title="bulma" class="image is-128x128">
+                        <a href="https://bulma.io"><img
                                 :src="`https://bulma.io/assets/brand/Bulma%20Logo${colour && '%20'.concat(colour)}.svg`"
                                 alt="bulma logo" loading="lazy">
                         </a>
                     </li>
-                    <li title="vue"><a href="https://vuejs.org">
-                        <img srcset="https://github.com/vuejs/art/blob/master/vue-badge-outlined.svg?raw=true, https://vuejs.org/images/logo.png" width="100" alt="vue logo" loading="lazy" />
-                    </a></li>
-                    <li title="catppuccin"><a href="https://catppuccin.com">
-                        <img srcset="https://github.com/catppuccin/catppuccin/blob/main/assets/logos/exports/1544x1544_circle.png?raw=true" width="100" alt="catppuccin logo" loading="lazy" />
-                    </a></li>
+                    <li title="vue" class="image is-128x128">
+                        <a href="https://vuejs.org">
+                            <img srcset="https://github.com/vuejs/art/blob/master/vue-badge-outlined.svg?raw=true, https://vuejs.org/images/logo.png"
+                                width="100" alt="vue logo" loading="lazy" />
+                        </a>
+                    </li>
+                    <li title="catppuccin" class="image is-128x128">
+                        <a href="https://catppuccin.com">
+                            <img srcset="https://github.com/catppuccin/catppuccin/blob/main/assets/logos/exports/1544x1544_circle.png?raw=true"
+                                width="100" alt="catppuccin logo" loading="lazy" />
+                        </a>
+                    </li>
+                    <li title="le moi" class="image is-128x128" wi lang="fr-CA">
+                        <img class="is-rounded" srcset="/public/bitmoji_sipping-tea.png, /public/bitmoji_hi.png"
+                            alt="bitmoji">
+                    </li>
                 </ul>
             </section>
 
@@ -33,6 +44,12 @@
 </template>
 
 <style scoped>
+    li.image {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 
     /*place footer at the bottom always*/
     /* footer::before {
@@ -74,9 +91,9 @@
         // teleport.value = true
     });
 
+    const theme = useColorMode({ modes: PuccinTheme });
     const colour = computed(() => {
-        const theme = useColorMode({ modes: PuccinTheme }).value
-        switch (theme) {
+        switch (theme.value) {
             case PuccinTheme.latte:
             case 'light':
                 return 'Black';
