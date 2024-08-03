@@ -16,7 +16,7 @@ i {
 </style>
 
 <script setup lang="ts">
-import { hasWordmark, type Design, type DeviconProps } from "@/types/devicon";
+import { hasWordmark, type Design, type DeviconProps } from "@/types/devIcon";
 import consola from "consola";
 import deviconJson from "devicon/devicon.json";
 import { computed } from "vue";
@@ -26,7 +26,7 @@ import { computed } from "vue";
 const props = withDefaults(defineProps<DeviconProps>(),
     {
         design: 'plain',
-        size: 3
+        size: 3,
     });
 
 const iconClass = computed(() => {

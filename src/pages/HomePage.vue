@@ -2,55 +2,39 @@
     <TheWelcome />
     <ProjectsView />
 
-    <section class="section">
-        <h2 class="title is-2">Languages</h2>
-        <small>some programming languages I know and have used over the years (in no particular order(●'◡'●)</small>
-        <ul
-            class="is-flex is-justify-content-center is-flex-wrap-wrap is-flex-direction-row is-align-content-space-around">
-            <li v-for="lang in languages" :key="lang">
-                <dev-icon :size="5" :icon="lang" fallback="no-text" :wordmark="randomBool()" :design="randomDesign()"
-                    coloured :title="lang" />
-            </li>
-        </ul>
-    </section>
+    <IconListSection v-for="section in sections" :key="section.title" v-bind="section" />
 
     <section class="section">
-        <h2 class="title is-2">Tools</h2>
-        <small>a list of tools I've gotten familiar with that help soooo much in development, cuz why sweat the small
-            stuff</small>
-        <ul
-            class="is-flex is-justify-content-center is-flex-wrap-wrap is-flex-direction-row is-align-content-space-around">
-            <li v-for="tool in tools" :key="tool">
-                <dev-icon :size="5" :design="randomDesign()" :wordmark="randomBool()" fallback="no-text" :icon="tool"
-                    :title="tool" coloured />
+        <h2 class="title is-2">Schooling🎓</h2>
+        <ol>
+            <li>
+                <h3 class="title is-3">Lakehead University & Georgian College</h3>
+                <p class="subtitle is-3">Computer Science & Computer Programming</p>
+                <p>Honours bachelor's (BsC) of Science</p>
+                <time datetime="2020-2024">2020 - 2024</time>
+                <p></p>
             </li>
-        </ul>
-    </section>
-
-    <section class="section">
-        <h2 class="title is-2">Frameworks</h2>
-        <small>yep, not quite a frameworker but these libraries and frameworks have made projects easier; I like wheels
-            but I try not to reinvent them ;-)</small>
-        <ul
-            class="is-flex is-justify-content-center is-flex-wrap-wrap is-flex-direction-row is-align-content-space-around">
-            <li v-for="framework in frameworks" :key="framework">
-                <dev-icon :design="randomDesign()" :wordmark="randomBool()" :size=5 fallback="no-text"
-                    :title="framework" :icon="framework" coloured />
-            </li>
-        </ul>
+        </ol>
     </section>
 </template>
 
-<style scoped></style>
+<style scoped>
+    ol {
+        list-style-type: none;
+        padding-left: 0;
+
+    }
+</style>
 
 <script setup lang="ts">
     import consola from "consola";
     import TheWelcome from "../components/TheWelcome.vue";
     import DevIcon from "@/components/DevIcon.vue";
-    import { getDesigns, type Design } from "@/types/devicon";
+    import { getDesigns, type Design } from "@/types/devIcon";
     import ProjectsView from "@/views/ProjectsView.vue";
+    import IconListSection from "@/views/IconListSection.vue";
+    import type { IconListSectionProps } from "@/types/iconListSection";
 
-    const randomBool = () => Math.random() > 0.5;
     const languages = [
         "vuejs",
         "react",
@@ -115,9 +99,18 @@
         "nuxtjs"
     ].sort(() => Math.random() - 0.5);
 
-    const randomDesign = () => {
+
+    const randomBool = () => Math.random() > 0.5;
+    const iconStyle = (): IconListSectionProps['iconStyle'] => ({ design: randomDesign(), wordmark: randomBool(), coloured: true, fallback: 'no-text', size: 7 });
+    const sections: IconListSectionProps[] = [
+        { title: 'Languages', blurb: "some programming languages I know and have used over the years (in no particular order(●'◡'●)", icons: languages, iconStyle: iconStyle() },
+        { title: 'Tools', blurb: "a list of tools I've gotten familiar with that help soooo much in development, cuz why sweat the small stuff", icons: tools, iconStyle: iconStyle() },
+        { title: 'frameworks', blurb: "yep, not quite a frameworker but these libraries and frameworks have made projects easier; I like wheels but I try not to reinvent them ;-)", icons: frameworks, iconStyle: iconStyle() }
+    ];
+
+    function randomDesign() {
         const designs = getDesigns();
         return designs[Math.floor(Math.random() * designs.length)];
-    };
+    }
 
 </script>
