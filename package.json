@@ -5,10 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "bunx --bun vite --host --logLevel info --clearScreen --debug",
-    "build": "run-p type-check \"build-only {@}\" --",
-    "preview": "vite preview",
-    "build-only": "vite build",
-    "type-check": "vue-tsc --build --force",
+    "build": "bunx --bun vite build",
+    "preview": "bunx --bun vite preview",
+    "type-check": "bunx --bun vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
