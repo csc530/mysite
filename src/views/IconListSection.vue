@@ -22,12 +22,14 @@
 
     const props = withDefaults(defineProps<IconListSectionProps>(),
         {
-            iconStyle: {
+            iconStyle() {
+                return {
                 size: 12,
                 coloured: true,
                 wordmark: true,
                 design: 'plain',
                 fallback: 'no-text'
             }
-        });
+        }
+    });
 </script>

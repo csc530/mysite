@@ -1,12 +1,12 @@
 <template>
     <div class="is-flex is-flex-direction-column">
-        <header class="is-flex-grow-0">
+        <header>
             <TheNav />
         </header>
-        <main class="container is-fluid is-flex-grow-1">
+        <main class="container is-fluid">
             <RouterView />
         </main>
-        <TheFoot class="is-flex-shrink-1 is-flex-grow-0" />
+        <TheFoot />
     </div>
 </template>
 
