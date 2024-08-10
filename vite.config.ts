@@ -14,6 +14,9 @@ export default defineConfig({
         VueDevTools(),
         checker({ typescript: true, vueTsc: true }),
     ],
+    build: {
+        reportCompressedSize: true,
+    },
     resolve: {
         alias: {
             "@": fileURLToPath(new URL("./src/", import.meta.url))
