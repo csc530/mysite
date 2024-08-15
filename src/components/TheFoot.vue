@@ -4,9 +4,7 @@
             class="footer flex is-flex-direction-column justify-content-center has-text-centered has-background-inherit">
             <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/18acd8f58d49b551eb8cc0ff035a006d605c9905/assets/footers/ext_black_monochromatic.svg"
                 alt="logo" :width="width" decoding="auto" loading="lazy" />
-            <small class="font-italic" title="get it cuz... heh heh, it's the footer😆    .. oh nvm">insert obligatory
-                mort quote here</small>
-
+            <small class="font-italic" title="get it cuz... heh heh, it's the footer😆    .. oh nvm">insert obligatory mort quote here</small>
             <section class="section">
                 <h2 class="subtitle is-7">Acknowledgements, Thx, Credits</h2>
                 <ul class="is-flex is-flex-direction-row is-gap-3 is-justify-content-space-around">
@@ -29,11 +27,12 @@
                         </a>
                     </li>
                     <li title="le moi" class="image is-128x128" wi lang="fr-CA">
-                        <img class="is-rounded" srcset="/public/bitmoji_sipping-tea.png, /public/bitmoji_hi.png"
+                        <img class="is-rounded" srcset="/bitmoji_sipping-tea.png, /bitmoji_hi.png"
                             alt="bitmoji">
                     </li>
                 </ul>
             </section>
+
 
             <!-- <figure class="image is-16by9">
                 <img class="is-rounded" :src="mort" alt="mort" loading="eager" />

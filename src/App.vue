@@ -1,4 +1,6 @@
 <template>
+    <SpeedInsights />
+
     <div class="is-flex is-flex-direction-column">
         <header>
             <TheNav />
@@ -21,5 +23,5 @@
     import { RouterView } from "vue-router";
     import TheNav from "@/components/TheNav.vue";
     import TheFoot from "@/components/TheFoot.vue";
-
+    import { SpeedInsights } from "@vercel/speed-insights/vue"
 </script>
