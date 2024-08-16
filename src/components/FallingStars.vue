@@ -1,5 +1,5 @@
 <template lang="html">
-    <span ref="skyRef"></span>
+    <div ref="skyRef"></div>
 </template>
 
 <style lang="css">
@@ -38,7 +38,7 @@
 
 <script setup lang="ts">
     import { useInterval, useIntervalFn } from "@vueuse/core";
-    import { defineProps, onUnmounted, watch, watchEffect, withDefaults } from "vue";
+    import { computed, defineProps, onUnmounted, watch, watchEffect, withDefaults } from "vue";
     import { ref } from "vue";
     const props = withDefaults(defineProps<{
         size?: number;
@@ -46,12 +46,14 @@
         interval?: number;
         colour?: string;
         position?: 'infront' | 'behind' | 'interleave';
+        container?: 'self' | 'parent' | 'body';
     }>(),
         {
             interval: Math.random() + 0.25,
             duration: Math.random() * 5 + 5,
             size: Math.random() * 12 + 1,
             position: 'behind',
+            container: 'self'
         }
     );
 
@@ -61,7 +63,27 @@
     // setInterval(stars,  1000);
     const count = ref(0);
 
+    const containerConstraint = computed(() => {
+        let refElement;
+        switch (props.container) {
+            case 'self':
+            default:
+                refElement = skyRef.value;
+                break;
+            case 'parent':
+                refElement = skyRef.value?.parentElement;
+                break;
+            case 'body':
+                refElement = document.body;
+                break;
+        }
 
+
+        return {
+            min: refElement?.offsetLeft ?? 0,
+            max: refElement?.offsetWidth - props.size ?? 0,
+        }
+    })
     function stars() {
         const star = document.createElement('i');
         star.id = `star-${count.value}`;
@@ -71,7 +93,7 @@
         star.classList.add('fa-solid', 'fa-star', 'star');
         star.style.position = 'absolute';
         star.style.top = '-16px';
-        star.style.left = Math.random() * innerWidth + 'px';
+        star.style.left = (Math.random() * containerConstraint.value.max + containerConstraint.value.min).toString() + 'px';
         star.style.fontSize = props.size + 'px';
         star.style.color = props.colour ?? 'white';
         star.style.animation = `starfallAnimation ${props.duration}s linear forwards`;

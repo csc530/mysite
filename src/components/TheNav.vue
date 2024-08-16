@@ -1,8 +1,8 @@
 <template>
-    <nav class="navbar is-spaced -has-shadow" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-spaced is-transparent is-fixed-top-touch" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="https://y.at/✝️🧠🍁👽" title="beep bop boo deep dorp">🖤✝️🧠🍁👽🖤</a>
-            <button ref="hamburgerRef" @click.stop.prevent="toggleHamburger" class="navbar-burger" aria-label="menu"
+            <button ref="hamburgerRef" @click.stop.prevent="toggleHamburger" class="navbar-burger is-hoverable" aria-label="menu"
                 aria-expanded="false">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
@@ -18,7 +18,7 @@
 
         <div class="navbar-menu" ref="navMenuRef">
             <div class="navbar-start">
-                <router-link v-for="route in navigableRoutes" :key="route.path" class="navbar-item" :to="route.path">
+                <router-link v-for="route in routes" :key="route.path" class="navbar-item" :to="route.path">
                     {{ route.name }}
                 </router-link>
             </div>
@@ -36,12 +36,16 @@
     import { computed, ref, watch, } from "vue";
     import { PuccinTheme } from "@/types/helper";
     import { useColorMode } from "@vueuse/core";
+import consola from "consola";
 
-    const router = useRouter();
-    const routes = router.getRoutes();
-    const navigableRoutes = computed(() => routes.filter(route => !route.path.includes(":")));
     const navMenuRef = ref<HTMLDivElement | null>(null);
     const hamburgerRef = ref<HTMLDivElement | null>(null);
+    const router = useRouter();
+    const routes = computed(()=>{
+        const anchors = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        return Array.from(anchors).filter(anchor => anchor.id).map(anchor => ({ name: anchor.textContent, path: `#${anchor.id}` }));
+    })
+    consola.info(routes.value);
 
     function toggleHamburger() {
         navMenuRef.value?.classList.toggle("is-active");

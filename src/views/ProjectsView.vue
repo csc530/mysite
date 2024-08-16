@@ -1,6 +1,6 @@
 <template>
     <section class="section">
-        <h2 class="title is-2">My Projects🚀</h2>
+        <h2 class="title is-2" id="projects">My Projects🚀</h2>
         <ul>
             <li class="box">
                 <a href="https://github.com/csc530/vuebulma" class="has-text-current">
