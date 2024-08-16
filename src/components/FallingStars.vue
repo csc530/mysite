@@ -71,7 +71,7 @@
         star.classList.add('fa-solid', 'fa-star', 'star');
         star.style.position = 'absolute';
         star.style.top = '-16px';
-        star.style.left = Math.random() * innerWidth + 'px';
+        star.style.left = (Math.random() * document.body.clientWidth) + 'px';
         star.style.fontSize = props.size + 'px';
         star.style.color = props.colour ?? 'white';
         star.style.animation = `starfallAnimation ${props.duration}s linear forwards`;

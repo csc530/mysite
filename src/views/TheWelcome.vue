@@ -5,22 +5,21 @@
         </section>
         <div class="hero-body">
             <section class="container">
-                <h1 class="title">🤓Christofer 😽 Cousins😉</h1>
+                <h1 class="title" id="theone">🤓Christofer 😽 Cousins😉</h1>
                 <!--    and my pfp is spinning in the middle with radiance-->
                 <!-- huge loves to starknoght https://github.com/StarKnightt/Falling-Stars -->
                 <img alt="" src="">
 
-                <h2 style="min-height: 3rem; min-width: 3rem;" class="subtitle" ref="attrRef"></h2>
+                <h2 style="min-height: 5rem; min-width: 5rem;" class="subtitle" ref="attrRef"></h2>
             </section>
         </div>
         <section class="hero-foot">
             <nav class="tabs is-centered">
                 <ul>
-                    <li><a href="https://github.com/csc530"><i class="fab fa-github"></i></a></li>
-                    <li><a href="https://www.linkedin.com/in/christofer-cousins/"><i class="fab fa-linkedin"></i></a>
-                    </li>
-                    <li @click="nope"><a><i class="fab fa-twitter"></i></a></li>
-                    <li><a :href="resume" target="_parent"><i class="fas fa-file"></i></a></li>
+                    <li><a class="icon is-large" href="https://github.com/csc530"><i class="fab fa-github fa-2xl"></i></a></li>
+                    <li><a class="icon is-large" href="https://www.linkedin.com/in/christofer-cousins/"><i class="fab fa-linkedin fa-2xl"></i></a></li>
+                    <li @click="nope"><a class="icon is-large"><i class="fab fa-twitter fa-2xl"></i></a></li>
+                    <li><a class="icon is-large" :href="resume" target="_parent"><i class="fa-solid fa-file fa-2xl"></i></a></li>
                 </ul>
             </nav>
         </section>

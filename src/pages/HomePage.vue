@@ -1,9 +1,7 @@
 <template>
     <TheWelcome />
     <ProjectsView />
-
-    <IconListSection v-for="section in sections" :key="section.title" v-bind="section" />
-
+    <IconListSection  v-bind="sections[2]" />
     <section class="section">
         <h2 class="title is-2">Schooling🎓</h2>
         <ol>
@@ -20,6 +18,7 @@
             </li>
         </ol>
     </section>
+    <IconListSection v-for="section in sections.splice(0,2)" :key="section.title" v-bind="section" />
 </template>
 
 <style scoped>
@@ -32,7 +31,7 @@
 
 <script setup lang="ts">
     import consola from "consola";
-    import TheWelcome from "../components/TheWelcome.vue";
+    import TheWelcome from "../views/TheWelcome.vue";
     import DevIcon from "@/components/DevIcon.vue";
     import { getDesigns, type Design } from "@/types/devIcon";
     import ProjectsView from "@/views/ProjectsView.vue";
