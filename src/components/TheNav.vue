@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar is-spaced -has-shadow" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item" title="you know the sh*t">✝️👽🧠🖤</a>
+            <a class="navbar-item" href="https://y.at/✝️🧠🍁👽" title="beep bop boo deep dorp">🖤✝️🧠🍁👽🖤</a>
             <button ref="hamburgerRef" @click.stop.prevent="toggleHamburger" class="navbar-burger" aria-label="menu"
                 aria-expanded="false">
                 <span aria-hidden="true"></span>
@@ -9,20 +9,22 @@
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
             </button>
+
+            <div class="navbar-item">
+                    <img @click="toggleTheme" :src="themeIcons.getTheme(colourTheme)" alt="theme icon" decoding="auto"
+                        loading="lazy" />
+                </div>
         </div>
 
         <div class="navbar-menu" ref="navMenuRef">
             <div class="navbar-start">
-                <router-link v-for="route in routes" :key="route.path" class="navbar-item" :to="route.path">
+                <router-link v-for="route in navigableRoutes" :key="route.path" class="navbar-item" :to="route.path">
                     {{ route.name }}
                 </router-link>
             </div>
-        </div>
 
-        <div class="navbar-end">
-            <div class="navbar-item">
-                <img @click="toggleTheme" :src="themeIcons.getTheme(colourTheme)" alt="theme icon" decoding="auto"
-                    loading="lazy" />
+            <div class="navbar-end">
+
             </div>
         </div>
 
@@ -37,6 +39,7 @@
 
     const router = useRouter();
     const routes = router.getRoutes();
+    const navigableRoutes = computed(() => routes.filter(route => !route.path.includes(":")));
     const navMenuRef = ref<HTMLDivElement | null>(null);
     const hamburgerRef = ref<HTMLDivElement | null>(null);
 

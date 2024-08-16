@@ -1,15 +1,29 @@
 <template>
-    <section class="hero has-text-centered is-fullheight ">
+    <section ref="heroRef" class="hero has-text-centered is-fullheight-with-navbar">
+        <FallingStars :size="13" :interval="1" :duration="10" :colour="starColour" position="interleave" />
+        <section class="hero-head">
+        </section>
         <div class="hero-body">
-            <div class="container">
-                <h1 class="title">[be] in awee</h1>
+            <section class="container">
+                <h1 class="title">🤓Christofer 😽 Cousins😉</h1>
                 <!--    and my pfp is spinning in the middle with radiance-->
-                <!--    surrounded by stars? gifs??-->
+                <!-- huge loves to starknoght https://github.com/StarKnightt/Falling-Stars -->
                 <img alt="" src="">
 
-                <h2 class="subtitle">Christofer: <span ref="attrRef"></span></h2>
-            </div>
+                <h2 style="min-height: 3rem; min-width: 3rem;" class="subtitle" ref="attrRef"></h2>
+            </section>
         </div>
+        <section class="hero-foot">
+            <nav class="tabs is-centered">
+                <ul>
+                    <li><a href="https://github.com/csc530"><i class="fab fa-github"></i></a></li>
+                    <li><a href="https://www.linkedin.com/in/christofer-cousins/"><i class="fab fa-linkedin"></i></a>
+                    </li>
+                    <li @click="nope"><a><i class="fab fa-twitter"></i></a></li>
+                    <li><a :href="resume" target="_parent"><i class="fas fa-file"></i></a></li>
+                </ul>
+            </nav>
+        </section>
     </section>
 </template>
 
@@ -20,17 +34,36 @@
 </style>
 
 <script setup lang="ts">
-    import WelcomeItem from "./WelcomeItem.vue";
-    import DocumentationIcon from "./icons/IconDocumentation.vue";
-    import ToolingIcon from "./icons/IconTooling.vue";
-    import EcosystemIcon from "./icons/IconEcosystem.vue";
-    import CommunityIcon from "./icons/IconCommunity.vue";
-    import SupportIcon from "./icons/IconSupport.vue";
+
+    import resume from "@/assets/resume.pdf";
+    import FallingStars from "@/components/FallingStars.vue";
     import { computed, ref, watch } from "vue";
     import consola from "consola";
+    import { useColorMode } from "@vueuse/core";
+    import { PuccinTheme } from "@/types/helper";
+
+    const colour = useColorMode<PuccinTheme>()
+    const starColour = computed(() => {
+        switch (colour.value) {
+            case PuccinTheme.latte:
+                return '#04a5e5';
+            case 'light':
+                return 'Black';
+            case PuccinTheme.mocha:
+                return '#cba6f7';
+            case 'dark':
+                return 'White';
+            default:
+                return undefined;
+        }
+    })
+
+    const heroRef = ref<HTMLElement | null>(null);
 
     const attrRef = ref<HTMLSpanElement | null>(null);
-
+    function nope() {
+        return alert('I don\'t have twitter (X) 😹😜');
+    }
 
     const attributes = ref([
         "computer scientist",
@@ -53,11 +86,9 @@
         "Vue💚Lover"
     ]);
 
-    const attribute = ref(attributes.value[Math.random() * attributes.value.length | 0]);
-
-    watch(attrRef, (value) => {
+    watch(attrRef, () => {
         typeAttribute(randomAttribute());
-    });
+    })
 
     function typeAttribute(attribute: string) {
         if (!attrRef.value)
@@ -105,4 +136,6 @@
         }
         return attr;
     }
+
+
 </script>

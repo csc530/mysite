@@ -1,7 +1,4 @@
 <template>
-    <SpeedInsights />
-
-    <div class="is-flex is-flex-direction-column">
         <header>
             <TheNav />
         </header>
@@ -9,13 +6,13 @@
             <RouterView />
         </main>
         <TheFoot />
-    </div>
+    <SpeedInsights />
 </template>
 
 
-<style scoped lang="css">
-    div {
-        min-height: 100vh;
+<style scoped module lang="css">
+    main {
+        min-height: 50vh;
     }
 </style>
 

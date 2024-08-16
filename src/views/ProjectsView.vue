@@ -5,7 +5,8 @@
             <li class="box">
                 <a href="https://github.com/csc530/vuebulma" class="has-text-current">
                     <h3 class="has-text-link">Vuebulma</h3>
-                    <p>Vue.js and Bulma</p>
+                    <p>Vue.js and Bulma component library</p>
+                    <small>currently upgrading to bulma v1.0...</small>
                 </a>
             </li>
 
