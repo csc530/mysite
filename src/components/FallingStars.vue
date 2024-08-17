@@ -1,5 +1,5 @@
 <template lang="html">
-    <span ref="skyRef"></span>
+    <div ref="skyRef"></div>
 </template>
 
 <style lang="css">
@@ -71,7 +71,7 @@
         star.classList.add('fa-solid', 'fa-star', 'star');
         star.style.position = 'absolute';
         star.style.top = '-16px';
-        star.style.left = (Math.random() * document.body.clientWidth) + 'px';
+        star.style.left = Math.max(skyRef.value?.clientWidth || 0, window.innerWidth || 0);
         star.style.fontSize = props.size + 'px';
         star.style.color = props.colour ?? 'white';
         star.style.animation = `starfallAnimation ${props.duration}s linear forwards`;
