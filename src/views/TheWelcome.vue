@@ -5,7 +5,7 @@
         </section>
         <div class="hero-body">
             <section class="container">
-                <h1 class="title" id="theone">🤓Christofer 😽 Cousins😉</h1>
+                <h1 class="title" id="theone">🤓 Christofer 😽 Cousins 😉</h1>
                 <!--    and my pfp is spinning in the middle with radiance-->
                 <!-- huge loves to starknoght https://github.com/StarKnightt/Falling-Stars -->
                 <img alt="" src="">
