@@ -71,7 +71,7 @@
         star.classList.add('fa-solid', 'fa-star', 'star');
         star.style.position = 'absolute';
         star.style.top = '-16px';
-        star.style.left = Math.max(skyRef.value?.clientWidth || 0, window.innerWidth || 0).toString() + 'px';
+        star.style.left = (skyRef.value?.clientWidth || window?.clientWidth  || document?.clientWidth || document.body?.clientWidth).toString() + 'px';
         star.style.fontSize = props.size + 'px';
         star.style.color = props.colour ?? 'white';
         star.style.animation = `starfallAnimation ${props.duration}s linear forwards`;
