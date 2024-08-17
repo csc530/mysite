@@ -37,12 +37,13 @@
 </style>
 
 <script setup lang="ts">
-    import { computed, defineProps, onUnmounted, ref, watch, withDefaults } from "vue";
+    import { computed, defineProps, onUnmounted, ref, watch, watchEffect, withDefaults } from "vue";
+    export type MinMaxArray = [number, number];
     const props = withDefaults(defineProps<{
-        size?: number;
-        duration?: number;
-        interval?: number;
-        colour?: string;
+        size?: number | MinMaxArray;
+        duration?: number | MinMaxArray;
+        interval?: number | MinMaxArray;
+        colour?: string | string[];
         position?: 'infront' | 'behind' | 'interleave';
         container?: 'self' | 'parent' | 'body';
     }>(),
@@ -82,7 +83,40 @@
             max: refElement?.offsetWidth - props.size ?? 0,
         }
     })
+
+
+    function getStarColour() {
+        if (typeof props.colour === 'string')
+            return props.colour
+        else if (Array.isArray(props.colour))
+            return props.colour[Math.floor(Math.random() * props.colour.length)];
+        else
+            return 'white';
+    }
+
+    function getDuration() {
+        if (typeof props.duration === 'number')
+            return props.duration
+        else
+            return Math.random() * props.duration[1] + props.duration[0];
+    }
+
+    function getInterval() {
+        if (typeof props.interval === 'number')
+            return props.interval;
+        else
+            return Math.random() * props.interval[1] + props.interval[0];
+    }
+
+    function getStarSize() {
+        if (typeof props.size === 'number')
+            return props.size;
+        return Math.random() * props.size[1] + props.size[0];
+    }
+
     function stars() {
+        const duration = getDuration();
+        const startPos = Math.random() * containerConstraint.value.max + containerConstraint.value.min
         const star = document.createElement('i');
         star.id = `star-${count.value}`;
 
@@ -91,10 +125,10 @@
         star.classList.add('fa-solid', 'fa-star', 'star');
         star.style.position = 'absolute';
         star.style.top = '-16px';
-        star.style.left = (Math.random() * containerConstraint.value.max + containerConstraint.value.min).toString() + 'px';
-        star.style.fontSize = props.size + 'px';
-        star.style.color = props.colour ?? 'white';
-        star.style.animation = `starfallAnimation ${props.duration}s linear forwards`;
+        star.style.left = startPos.toString() + 'px';
+        star.style.fontSize = getStarSize() + 'px';
+        star.style.color = getStarColour();
+        star.style.animation = `starfallAnimation ${duration}s linear forwards`;
 
         switch (props.position) {
             case 'infront':
@@ -128,16 +162,33 @@
                     count.value--;
                 })
             }
-        }, props.duration * 1000);
+        }, duration * 1000);
     }
 
-    watch(skyRef, () => {
-        if (skyRef.value) {
-            fallingStars.value = setInterval(stars, props.interval * 100);
+    watchEffect((onCleanup) => {
+        if (!skyRef.value)
+            return
+        if (typeof props.interval === 'number')
+            fallingStars.value = setInterval(stars, getInterval() * 1000);
+        else {
+            fallingStars.value = setTimeout(() => {
+                stars();
+                // recursive timeout
+                fallingStars.value = setTimeout(stars, getInterval() * 1000);
+            }, getInterval() * 1000);
         }
+
+
+        onCleanup(() => {
+            typeof fallingStars.value === 'number' ?
+                clearInterval(fallingStars.value ?? -0) :
+                clearTimeout(fallingStars.value ?? -0);
+        })
     })
 
     onUnmounted(() => {
-        clearInterval(fallingStars.value ?? -0);
+        typeof fallingStars.value === 'number' ?
+            clearInterval(fallingStars.value ?? -0) :
+            clearTimeout(fallingStars.value ?? -0);
     })
 </script>

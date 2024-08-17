@@ -1,7 +1,10 @@
 <template>
     <section ref="heroRef" class="hero has-text-centered is-fullheight-with-navbar">
-        <FallingStars container="body" :size="13" :interval="1" :duration="10" :colour="starColour" position="interleave" />
         <section class="hero-head">
+            <FallingStars container="body" :size="14" :interval="0.8" :duration="[8,15]" :colour="starColours" position="interleave" />
+            <FallingStars container="body" :size="[5,150]" :interval="[3, 100]" :duration="[0.5, 2]" :colour="catFlavour.colors.text.hex" position="infront" />
+            <FallingStars container="body" :size="8" :interval="0.5" :duration="[5,10]" :colour="starColours" />
+            <FallingStars container="body" :size="24" :interval="2" :duration="[10,20]" :colour="starColours" position="behind" />
         </section>
         <div class="hero-body">
             <section class="container">
@@ -16,10 +19,13 @@
         <section class="hero-foot">
             <nav class="tabs is-centered">
                 <ul>
-                    <li><a class="icon is-large" href="https://github.com/csc530"><i class="fab fa-github fa-2xl"></i></a></li>
-                    <li><a class="icon is-large" href="https://www.linkedin.com/in/christofer-cousins/"><i class="fab fa-linkedin fa-2xl"></i></a></li>
+                    <li><a class="icon is-large" href="https://github.com/csc530"><i
+                                class="fab fa-github fa-2xl"></i></a></li>
+                    <li><a class="icon is-large" href="https://www.linkedin.com/in/christofer-cousins/"><i
+                                class="fab fa-linkedin fa-2xl"></i></a></li>
                     <li @click="nope"><a class="icon is-large"><i class="fab fa-twitter fa-2xl"></i></a></li>
-                    <li><a class="icon is-large" :href="resume" target="_parent"><i class="fa-solid fa-file fa-2xl"></i></a></li>
+                    <li><a class="icon is-large" :href="resume" target="_parent"><i
+                                class="fa-solid fa-file fa-2xl"></i></a></li>
                 </ul>
             </nav>
         </section>
@@ -38,18 +44,26 @@
     import FallingStars from "@/components/FallingStars.vue";
     import { computed, ref, watch } from "vue";
     import consola from "consola";
+    import { flavors, type Colors, type MonochromaticName } from "@catppuccin/palette";
     import { useColorMode } from "@vueuse/core";
     import { PuccinTheme } from "@/types/helper";
-
+    const monochromaticColours: MonochromaticName[] = ['text', 'base', 'overlay0', 'overlay1', 'overlay2', 'mantle', 'crust', 'surface0', 'surface1', 'surface2', 'subtext0', 'subtext1']
     const colour = useColorMode<PuccinTheme>()
-    const starColour = computed(() => {
+    const catFlavour = computed(() => {
+        if (colour.value === PuccinTheme.latte || colour.value === 'light')
+            return flavors.latte
+        return flavors.mocha
+    })
+    const getCatppuccinColours = (coloursEntries: typeof flavors.latte.colorEntries) => coloursEntries.filter(colour => !monochromaticColours.includes(colour[0])).map(colour => colour[1].hex)
+
+    const starColours = computed(() => {
         switch (colour.value) {
             case PuccinTheme.latte:
-                return '#04a5e5';
+                return getCatppuccinColours(flavors.latte.colorEntries);
             case 'light':
                 return 'Black';
             case PuccinTheme.mocha:
-                return '#cba6f7';
+                return getCatppuccinColours(flavors.mocha.colorEntries);
             case 'dark':
                 return 'White';
             default:
