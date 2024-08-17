@@ -27,13 +27,6 @@
             opacity: 0;
         }
     }
-
-    @media screen and (max-width: 600px) {
-        .star {
-            font-size: 8px;
-        }
-    }
-
 </style>
 
 <script setup lang="ts">
