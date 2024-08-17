@@ -37,9 +37,7 @@
 </style>
 
 <script setup lang="ts">
-    import { useInterval, useIntervalFn } from "@vueuse/core";
-    import { computed, defineProps, onUnmounted, watch, watchEffect, withDefaults } from "vue";
-    import { ref } from "vue";
+    import { computed, defineProps, onUnmounted, ref, watch, withDefaults } from "vue";
     const props = withDefaults(defineProps<{
         size?: number;
         duration?: number;
