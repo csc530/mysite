@@ -142,4 +142,3 @@
     onUnmounted(() => {
         clearInterval(fallingStars.value ?? -0);
     })
-</script>
