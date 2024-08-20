@@ -3,4 +3,17 @@ h1, h2, h3, h4, h5, h6 {
     text-transform: capitalize;
     /* small caps */
     font-variant: small-caps;
+    word-break: keep-all;
+    word-wrap: normal;
+}
+a {
+    text-decoration: underline 0.05em;
+    transition: all 2s cubic-bezier(0.47, 0, 0.745, 0.715) 0.5ms;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:hover:has(>*:empty,svg):only-child {
+    text-decoration: underline;
+    border-bottom: solid 0.1em;
 }

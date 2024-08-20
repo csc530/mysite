@@ -10,42 +10,53 @@
         /* content: "\f005";
         font-family: FontAwesome; */
         text-shadow: 0 0 5px #fff, 0 0 20px #fff, 0 0 50px #fff;
+        text-shadow: 2px 2px;
     }
 
-    @keyframes starfallAnimation {
+    @keyframes matrixRain {
         0% {
-            transform: translateY(0) rotate(0deg);
-            opacity: 1;
+            transform: v-bind("$props.rotate ? 'rotate(0)' : 'none'");
+            transform: translateY(0);
+            opacity: 0.9;
+        }
+
+        20%{
+            /* opacity: 1; */
         }
 
         80% {
-            opacity: 1;
+            /* opacity: 0.3; */
         }
 
         100% {
-            transform: translateY(100vh) rotate(360deg);
+            transform: v-bind("$props.rotate ? 'rotate(360deg)' : 'none'");
+            transform: translateY(100vh);
             opacity: 0;
         }
     }
 </style>
 
 <script setup lang="ts">
+    import consola from "consola";
     import { computed, defineProps, onUnmounted, ref, watch, watchEffect, withDefaults } from "vue";
     export type MinMaxArray = [number, number];
     const props = withDefaults(defineProps<{
         size?: number | MinMaxArray;
+        items?: string | string[];
         duration?: number | MinMaxArray;
         interval?: number | MinMaxArray;
         colour?: string | string[];
         position?: 'infront' | 'behind' | 'interleave';
         container?: 'self' | 'parent' | 'body';
+        rotate?: boolean;
     }>(),
         {
             interval: Math.random() + 0.25,
             duration: Math.random() * 5 + 5,
             size: Math.random() * 12 + 1,
             position: 'behind',
-            container: 'self'
+            container: 'self',
+            items: '🌟',
         }
     );
 
@@ -56,24 +67,11 @@
     const count = ref(0);
 
     const containerConstraint = computed(() => {
-        let refElement;
-        switch (props.container) {
-            case 'self':
-            default:
-                refElement = skyRef.value;
-                break;
-            case 'parent':
-                refElement = skyRef.value?.parentElement;
-                break;
-            case 'body':
-                refElement = document.body;
-                break;
-        }
-
+        let refElement = props.container === 'body' ? document.body : skyRef.value;
 
         return {
             min: refElement?.offsetLeft ?? 0,
-            max: refElement?.offsetWidth - props.size ?? 0,
+            max: refElement?.offsetWidth - getSize() ?? 0,
         }
     })
 
@@ -101,73 +99,71 @@
             return Math.random() * props.interval[1] + props.interval[0];
     }
 
-    function getStarSize() {
+    function getSize() {
         if (typeof props.size === 'number')
             return props.size;
         return Math.random() * props.size[1] + props.size[0];
     }
 
-    function stars() {
+    function fall() {
+
+
         const duration = getDuration();
         const startPos = Math.random() * containerConstraint.value.max + containerConstraint.value.min
-        const star = document.createElement('i');
-        star.id = `star-${count.value}`;
+        const bin = document.createElement('span');
+        bin.textContent = typeof props.items === 'string' ? props.items : props.items[Math.floor(Math.random() * props.items.length)];
+        bin.id = `fall-${count.value}`;
 
         count.value++;
 
-        star.classList.add('fa-solid', 'fa-star', 'star');
-        star.style.position = 'absolute';
-        star.style.top = '-16px';
-        star.style.left = startPos.toString() + 'px';
-        star.style.fontSize = getStarSize() + 'px';
-        star.style.color = getStarColour();
-        star.style.animation = `starfallAnimation ${duration}s linear forwards`;
+        bin.style.position = 'absolute';
+        bin.style.top = '-16px';
+        bin.style.left = `${startPos}px`;
+        bin.style.fontSize = getSize() + 'px';
+        bin.style.color = getStarColour();
+        bin.style.animation = `matrixRain ${duration}s linear forwards`;
 
         switch (props.position) {
             case 'infront':
-                star.style.zIndex = '1000';
+                bin.style.zIndex = '1000';
                 break;
             case 'behind':
-                star.style.zIndex = '-1000';
+                bin.style.zIndex = '-1000';
                 break;
             case 'interleave': {
                 let zIndex = Math.round(Math.random() * 10);
                 if (Math.random() > 0.5)
                     zIndex *= -1
-                star.style.zIndex = zIndex.toString();
+                bin.style.zIndex = zIndex.toString();
                 break;
             }
         }
 
-        const animation = star.getAnimations()?.[0];
+        const animation = bin.getAnimations()?.[0];
         if (animation)
-            animation.addEventListener("finish", () => {
-                document.querySelector(`#${star.id}`)?.remove();
-            })
+            animation.addEventListener("finish", (e) => {
+                count.value--;
+                bin.remove();
+            });
 
-        skyRef.value?.appendChild(star);
+        skyRef.value?.appendChild(bin);
 
         setTimeout(() => {
-            const icon: HTMLElement | null = document.querySelector(`#${star.id}`);
-            if (icon) {
-                icon.getAnimations()?.[0].addEventListener("finish", () => {
-                    icon.remove();
-                    count.value--;
-                })
-            }
-        }, duration * 1000);
+            count.value--;
+            bin.remove();
+        }, duration * 1000 + 100);
     }
 
     watchEffect((onCleanup) => {
         if (!skyRef.value)
             return
         if (typeof props.interval === 'number')
-            fallingStars.value = setInterval(stars, getInterval() * 1000);
+            fallingStars.value = setInterval(fall, getInterval() * 1000);
         else {
             fallingStars.value = setTimeout(() => {
-                stars();
+                fall();
                 // recursive timeout
-                fallingStars.value = setTimeout(stars, getInterval() * 1000);
+                fallingStars.value = setTimeout(fall, getInterval() * 1000);
             }, getInterval() * 1000);
         }
 

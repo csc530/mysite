@@ -1,19 +1,22 @@
 <template>
     <section ref="heroRef" class="hero has-text-centered is-fullheight-with-navbar">
         <section class="hero-head">
-            <FallingStars container="body" :size="14" :interval="0.8" :duration="[8,15]" :colour="starColours" position="interleave" />
-            <FallingStars container="body" :size="[5,150]" :interval="[3, 100]" :duration="[0.5, 2]" :colour="catFlavour.colors.text.hex" position="infront" />
-            <FallingStars container="body" :size="8" :interval="0.5" :duration="[5,10]" :colour="starColours" />
-            <FallingStars container="body" :size="24" :interval="2" :duration="[10,20]" :colour="starColours" position="behind" />
+            <FallingRain container="body" :items="['0', '1']" :size="[10, 18]" :interval="0.3" :duration="[2, 15]"
+                :colour="starColours" position="interleave" />
+            <FallingRain container="body" rotate :items="['0', '1']" :size="[5, 150]" :interval="[0.1, 100]"
+                :duration="0.045" :colour="catFlavour.colors.text.hex" position="infront" />
+            <FallingRain container="body" :items="['0', '1']" :size="[4, 12]" :interval="0.25" :duration="[1, 10]"
+                :colour="starColours" />
+            <FallingRain container="body" :items="['0', '1']" :size="24" :interval="1" :duration="[15, 20]"
+                :colour="starColours" position="behind" />
         </section>
         <div class="hero-body">
             <section class="container">
-                <h1 class="title" id="theone">🤓 Christofer 😽 Cousins 😉</h1>
+                <h1 class="title" id="theone">Christofer Cousins</h1>
                 <!--    and my pfp is spinning in the middle with radiance-->
                 <!-- huge loves to starknoght https://github.com/StarKnightt/Falling-Stars -->
                 <img alt="" src="">
 
-                <h2 style="min-height: 5rem; min-width: 5rem;" class="subtitle" ref="attrRef"></h2>
             </section>
         </div>
         <section class="hero-foot">
@@ -41,12 +44,11 @@
 <script setup lang="ts">
 
     import resume from "@/assets/resume.pdf";
-    import FallingStars from "@/components/FallingStars.vue";
-    import { computed, ref, watch } from "vue";
-    import consola from "consola";
-    import { flavors, type Colors, type MonochromaticName } from "@catppuccin/palette";
-    import { useColorMode } from "@vueuse/core";
+    import FallingRain from "@/components/FallingRain.vue";
     import { PuccinTheme } from "@/types/helper";
+    import { flavors, type MonochromaticName } from "@catppuccin/palette";
+    import { useColorMode } from "@vueuse/core";
+    import { computed, ref, watch } from "vue";
     const monochromaticColours: MonochromaticName[] = ['text', 'base', 'overlay0', 'overlay1', 'overlay2', 'mantle', 'crust', 'surface0', 'surface1', 'surface2', 'subtext0', 'subtext1']
     const colour = useColorMode<PuccinTheme>()
     const catFlavour = computed(() => {
@@ -73,82 +75,12 @@
 
     const heroRef = ref<HTMLElement | null>(null);
 
-    const attrRef = ref<HTMLSpanElement | null>(null);
     function nope() {
         return alert('I don\'t have twitter (X) 😹😜');
     }
 
-    const attributes = ref([
-        "computer scientist",
-        "software engineer",
-        "that guy",
-        "child of God",
-        "doing his best",
-        "sleeping",
-        "problem solver",
-        "solution seeker",
-        "life-long learner",
-        "student of all",
-        "student of adventure!!!",
-        "life's kid",
-        "i don't want free headphones",
-        "code monkey",
-        "prime programmer",
-        "red-onkulous",
-        "REACT-HATER",
-        "Vue💚Lover"
-    ]);
 
-    watch(attrRef, () => {
-        typeAttribute(randomAttribute());
-    })
 
-    function typeAttribute(attribute: string) {
-        if (!attrRef.value)
-            return;
-
-        attrRef.value.textContent = "";
-        let index = 0;
-        const interval = setInterval(() => {
-            if (!attrRef.value) return;
-
-            attrRef.value.textContent += attribute[index];
-            index++;
-            if (index === attribute.length) {
-                clearInterval(interval);
-                clearAttribute(attribute);
-            }
-        }, Math.random() * 1000);
-    }
-
-    function clearAttribute(attribute: string) {
-        if (!attrRef.value)
-            return;
-
-        attrRef.value.textContent = attribute;
-        let index = 0;
-        const interval = setInterval(() => {
-            if (!attrRef.value) return;
-
-            attrRef.value.textContent = attribute.substring(0, attribute.length - index);
-            index++;
-            if (index === attribute.length) {
-                clearInterval(interval);
-                typeAttribute(randomAttribute());
-            }
-        }, Math.random() * 1000);
-    }
-
-    function randomAttribute(not?: string | string[]) {
-        let attr = not?.[0] ?? attributes.value[Math.random() * attributes.value.length | 0];
-        if (not) {
-            if (typeof not === "string")
-                not = [not];
-            while (not.includes(attr))
-                attr = attributes.value[Math.random() * attributes.value.length | 0];
-        }
-        return attr;
-    }
 
 
 </script>

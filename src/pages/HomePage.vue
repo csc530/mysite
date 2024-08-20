@@ -1,9 +1,9 @@
 <template>
     <TheWelcome />
     <ProjectsView />
-    <IconListSection  v-bind="sections[2]" />
+    <IconListSection v-bind="sections[2]" />
     <section class="section">
-        <h2 class="title is-2">Schooling🎓</h2>
+        <h2 class="title is-2">Schooling 🎓</h2>
         <ol>
             <li>
                 <h3 class="title is-3">Lakehead University <img
@@ -18,7 +18,7 @@
             </li>
         </ol>
     </section>
-    <IconListSection v-for="section in sections.splice(0,2)" :key="section.title" v-bind="section" />
+    <IconListSection v-for="section in sections.splice(0, 2)" :key="section.title" v-bind="section" />
 </template>
 
 <style scoped>
@@ -30,15 +30,12 @@
 </style>
 
 <script setup lang="ts">
-    import consola from "consola";
-    import TheWelcome from "../views/TheWelcome.vue";
-    import DevIcon from "@/components/DevIcon.vue";
-    import { getDesigns, type Design } from "@/types/devIcon";
-    import ProjectsView from "@/views/ProjectsView.vue";
-    import IconListSection from "@/views/IconListSection.vue";
+    import { getDesigns } from "@/types/devIcon";
     import type { IconListSectionProps } from "@/types/iconListSection";
-
-
+    import IconListSection from "@/views/IconListSection.vue";
+    import ProjectsView from "@/views/ProjectsView.vue";
+    import TheWelcome from "@/views/TheWelcome.vue";
+    // import resumer from "./../assets/json_2024-08-17_11-20-13.json";
     const languages = [
         "vuejs",
         "react",

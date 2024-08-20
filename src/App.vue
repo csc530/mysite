@@ -1,4 +1,5 @@
 <template>
+    <!-- <MatrixRain /> -->
     <header>
         <TheNav />
     </header>
@@ -17,11 +18,8 @@
 </style>
 
 <script setup lang="ts">
-    import { RouterView } from "vue-router";
-    import TheNav from "@/components/TheNav.vue";
     import TheFoot from "@/components/TheFoot.vue";
-    import { SpeedInsights } from "@vercel/speed-insights/vue"
-    import { useFavicon } from "@vueuse/core";
-    import favicon from "./assets/images/favicon.ico"
-    useFavicon(favicon, { rel: 'icon' })
+    import TheNav from "@/components/TheNav.vue";
+    import { SpeedInsights } from "@vercel/speed-insights/vue";
+    import { RouterView } from "vue-router";
 </script>

@@ -1,9 +1,9 @@
 <template>
     <nav class="navbar is-spaced is-transparent is-fixed-top-touch" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item" href="https://y.at/✝️🧠🍁👽" title="beep bop boo deep dorp">🖤✝️🧠🍁👽🖤</a>
-            <button ref="hamburgerRef" @click.stop.prevent="toggleHamburger" class="navbar-burger is-hoverable" aria-label="menu"
-                aria-expanded="false">
+            <!-- <a class="navbar-item" href="https://y.at/✝️🧠🍁👽" title="beep bop boo deep dorp">🖤✝️🧠🍁👽🖤</a> -->
+            <button v-if="routes.length > 0" ref="hamburgerRef" @click.stop.prevent="toggleHamburger"
+                class="navbar-burger is-hoverable" aria-label="menu" aria-expanded="false">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
@@ -11,9 +11,9 @@
             </button>
 
             <div class="navbar-item">
-                    <img @click="toggleTheme" :src="themeIcons.getTheme(colourTheme)" alt="theme icon" decoding="auto"
-                        loading="lazy" />
-                </div>
+                <img @click="toggleTheme" :src="themeIcons.getTheme(colourTheme)" alt="theme icon" decoding="auto"
+                    loading="lazy" />
+            </div>
         </div>
 
         <div class="navbar-menu" ref="navMenuRef">
@@ -32,20 +32,18 @@
 </template>
 
 <script setup lang="ts">
-    import { useRouter } from "vue-router";
-    import { computed, ref, watch, } from "vue";
     import { PuccinTheme } from "@/types/helper";
-    import { useColorMode } from "@vueuse/core";
-import consola from "consola";
+import { useColorMode } from "@vueuse/core";
+import { computed, ref, watch, } from "vue";
+import { useRouter } from "vue-router";
 
     const navMenuRef = ref<HTMLDivElement | null>(null);
     const hamburgerRef = ref<HTMLDivElement | null>(null);
     const router = useRouter();
-    const routes = computed(()=>{
+    const routes = computed(() => {
         const anchors = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
         return Array.from(anchors).filter(anchor => anchor.id).map(anchor => ({ name: anchor.textContent, path: `#${anchor.id}` }));
     })
-    consola.info(routes.value);
 
     function toggleHamburger() {
         navMenuRef.value?.classList.toggle("is-active");
@@ -62,7 +60,7 @@ import consola from "consola";
             return this.latte;
         }
     };
-    const { system: systemColourTheme, store: storeColourTheme, state: colourState } = useColorMode({
+    const { system: systemColourTheme, store: storeColourTheme } = useColorMode({
         attribute: "data-theme",
         modes: PuccinTheme,
     });

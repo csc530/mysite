@@ -1,24 +1,28 @@
 @use "@catppuccin/palette/scss/catppuccin";
+
 @use "sass:map";
+@use "sass:color";
+
 @use "bulma/sass" as bulma;
 @use "bulma/sass/utilities/css-variables" as cv;
-@use "bulma/sass/themes/setup";
+@use "bulma/sass/themes/setup" as setup;
+@use "bulma/sass/utilities/derived-variables" as dv;
 
-$flavour: map-get(
-		$map: catppuccin.$palette,
-		$key: "frappe"
-);
 
-// colours
-$orange: map-get($flavour, "peach");
-$yellow: map-get($flavour, "yellow");
-$green: map-get($flavour, "green");
-$turquoise: map-get($flavour, "teal");
-$cyan: map-get($flavour, "sky");
-$blue: map-get($flavour, "blue");
-$purple: map-get($flavour, "lavender");
-$pink: map-get($flavour, "pink");
-$red: map-get($flavour, "red");
+// $flavour: map-get($map: catppuccin.$palette,
+// 		$key: "frappe"
+// 	);
+
+// // colours
+// $orange: map-get($flavour, "peach");
+// $yellow: map-get($flavour, "yellow");
+// $green: map-get($flavour, "green");
+// $turquoise: map-get($flavour, "teal");
+// $cyan: map-get($flavour, "sky");
+// $blue: map-get($flavour, "blue");
+// $purple: map-get($flavour, "lavender");
+// $pink: map-get($flavour, "pink");
+// $red: map-get($flavour, "red");
 
 //@use "bulma/sass" as bulma
 //  with
@@ -71,43 +75,50 @@ $red: map-get($flavour, "red");
 //  );
 
 @each $flavour, $colours in catppuccin.$palette {
-  @include cv.bulma-theme($name: $flavour) {
-	@include cv.register-vars(
-					(
-							"orange": map-get($map: $colours, $key: "peach"),
-							"yellow": map-get($map: $colours, $key: "yellow"),
-							"green": map-get($map: $colours, $key: "green"),
-							"turquoise": map-get($colours, "teal"),
-							"cyan": map-get($map: $colours, $key: "sky"),
-							"blue": map-get($map: $colours, $key: "blue"),
-							"purple": map-get($map: $colours, $key: "lavender"),
-							"pink": map-get($map: $colours, $key: "pink"),
-							"red": map-get($map: $colours, $key: "red"),
-							"text": map-get($map: $colours, $key: "text"),
-							"background": map-get($map: $colours, $key: "base"),
-							"black": map-get($map: $colours, $key: "crust"),
-							"black-bis": map-get($map: $colours, $key: "mantle"),
-							"black-ter": map-get($map: $colours, $key: "base"),
-							"grey-darker": map-get($map: $colours, $key: "surface0"),
-							"grey-dark": map-get($map: $colours, $key: "surface1"),
-							"grey": map-get($map: $colours, $key: "surface2"),
-							"grey-light": map-get($map: $colours, $key: "overlay0"),
-							"grey-lighter": map-get($map: $colours, $key: "overlay1"),
-							"grey-lightest": map-get($map: $colours, $key: "overlay2"),
-							"white-ter": map-get($map: $colours, $key: "subtext0"),
-							"white-bis": map-get($map: $colours, $key: "subtext1"),
-							"white": map-get($map: $colours, $key: "text"),
+  $colourMap: (
+          "orange": map-get($map: $colours, $key: "peach"),
+          "yellow": map-get($map: $colours, $key: "yellow"),
+          "green": map-get($map: $colours, $key: "green"),
+          "turquoise": map-get($colours, "teal"),
+          "cyan": map-get($map: $colours, $key: "sky"),
+          "blue": map-get($map: $colours, $key: "blue"),
+          "purple": map-get($map: $colours, $key: "lavender"),
+          "pink": map-get($map: $colours, $key: "pink"),
+          "red": map-get($map: $colours, $key: "red"),
+          "text": map-get($map: $colours, $key: "text"),
+          "background": map-get($map: $colours, $key: "base"),
+          "black": map-get($map: $colours, $key: "crust"),
+          "black-bis": map-get($map: $colours, $key: "mantle"),
+          "black-ter": map-get($map: $colours, $key: "base"),
+          "grey-darker": map-get($map: $colours, $key: "surface0"),
+          "grey-dark": map-get($map: $colours, $key: "surface1"),
+          "grey": map-get($map: $colours, $key: "surface2"),
+          "grey-light": map-get($map: $colours, $key: "overlay0"),
+          "grey-lighter": map-get($map: $colours, $key: "overlay1"),
+          "grey-lightest": map-get($map: $colours, $key: "overlay2"),
+          "white-ter": map-get($map: $colours, $key: "subtext0"),
+          "white-bis": map-get($map: $colours, $key: "subtext1"),
+          "white": map-get($map: $colours, $key: "text"),
+    //"body-background-color": map-get($colours, "crust"),
+    // things that were not "auto" overridden in the css vars
+          "scheme-main": map-get($colours, "base"),
+          "scheme-main-bis": map-get($colours, "mantle"),
+          "scheme-main-ter": map-get($colours, "crust"),
+          "scheme-invert": map-get($colours, "text"),
+          "scheme-invert-bis": map-get($colours, "subtext1"),
+          "scheme-invert-ter": map-get($colours, "subtext0"),
+          "text-strong": map-get($map: $colours, $key: "text"),
+          "scheme": map-get($colours, "base"),
+  );
 
-							//"body-background-color": map-get($colours, "crust"),
-							"scheme-main": map-get($colours, "base"),
-							"scheme-main-bis": map-get($colours, "mantle"),
-							"scheme-main-ter": map-get($colours, "crust"),
-							"scheme-invert": map-get($colours, "text"),
-							"scheme-invert-bis": map-get($colours, "subtext1"),
-							"scheme-invert-ter": map-get($colours, "subtext0"),
-							//"scheme": map-get($colours, "crust"),
-					)
-	);
+  @include cv.bulma-theme($name: $flavour) {
+    @include cv.register-vars($colourMap);
+    //// Then, setup the new theme.
+    //@each $name, $color in dv.$colors {
+    //    @include cv.generate-on-scheme-colors($name, map.get($colourMap, $name), map-get($colours, "base"));
+    //}
+    //@include setup.setup-theme();
+
   }
 }
 
