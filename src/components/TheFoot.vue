@@ -24,14 +24,14 @@
                     </li>
                     <li title="catppuccin" class="image is-128x128">
                         <a href="https://catppuccin.com">
-                            <img src="https://github.com/catppuccin/catppuccin/blob/main/assets/logos/exports/1544x1544_circle.png?raw=true"
-                                width="100" alt="catppuccin" loading="lazy" />
+                            <img class="is-rounded" src="https://github.com/catppuccin/catppuccin/blob/main/assets/logos/exports/1544x1544_circle.png?raw=true"
+                                alt="catppuccin" loading="lazy" />
                         </a>
                     </li>
                     <li title="chinablue03" class="image is-128x128">
                         <a href="https://www.deviantart.com/chinablue03" target="_top" rel="external">
                             <img class="is-rounded" src="https://a.deviantart.net/avatars-big/c/h/chinablue03.jpg?8"
-                                alt="chinablue03 - for favicon" width="100" loading="lazy">
+                                alt="chinablue03 - for favicon" loading="lazy">
                         </a>
                     </li>
                     <li title="le moi" class="image is-128x128" wi lang="fr-CA">

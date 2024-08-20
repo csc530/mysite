@@ -114,11 +114,12 @@
   @include cv.bulma-theme($name: $flavour) {
     @include cv.register-vars($colourMap);
     //// Then, setup the new theme.
+    /// // bulma's own colours from the derived vars mod do not work in the generateScheme function
     //@each $name, $color in dv.$colors {
     //    @include cv.generate-on-scheme-colors($name, map.get($colourMap, $name), map-get($colours, "base"));
     //}
+    // // setup theme be breaking and overriding everything done before; like only the initially set or last(?) theme's values are used
     //@include setup.setup-theme();
-
   }
 }
 
