@@ -4,8 +4,12 @@
             class="footer flex is-flex-direction-column justify-content-center has-text-centered has-background-inherit">
             <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/18acd8f58d49b551eb8cc0ff035a006d605c9905/assets/footers/ext_black_monochromatic.svg"
                 alt="logo" :width="width" decoding="auto" loading="lazy" />
-            <small class="font-italic" title="get it cuz... heh heh, it's the footer😆    .. oh nvm">insert obligatory
-                mort quote here</small>
+
+            <p>Want to contact me?
+                <br>
+                <a :href="`mailto:${email}?subject=Hello...`">Send me an e-mail <i class="fas fa-envelope"></i></a>
+            </p>
+
             <section class="section">
                 <h2 class="subtitle is-7">Acknowledgements, Thx, Credits</h2>
                 <ul class="is-flex is-flex-direction-row is-gap-3 is-justify-content-space-around">
@@ -24,7 +28,8 @@
                     </li>
                     <li title="catppuccin" class="image is-128x128">
                         <a href="https://catppuccin.com">
-                            <img class="is-rounded" src="https://github.com/catppuccin/catppuccin/blob/main/assets/logos/exports/1544x1544_circle.png?raw=true"
+                            <img class="is-rounded"
+                                src="https://github.com/catppuccin/catppuccin/blob/main/assets/logos/exports/1544x1544_circle.png?raw=true"
                                 alt="catppuccin" loading="lazy" />
                         </a>
                     </li>
@@ -99,6 +104,7 @@
     watch([], () => {
         // teleport.value = true
     });
+    const email = 'csc530+mywebsite@vivaldi.net'
 
     const theme = useColorMode({ modes: PuccinTheme });
     const colour = computed(() => {

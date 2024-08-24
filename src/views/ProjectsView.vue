@@ -6,21 +6,23 @@
                 <a href="https://github.com/csc530/vuebulma" class="has-text-current">
                     <h3 class="has-text-link">Vuebulma</h3>
                     <p>Vue.js and Bulma component library</p>
-                    <small>currently upgrading to bulma v1.0...</small>
+                    <small>Pre built HTML with tags and JS functionality to simply create websites and using bulma's CSS framework and vue.js framework.</small>
                 </a>
             </li>
 
             <li class="box">
                 <a href="https://github.com/csc530/resumer" class="has-text-current">
                     <h3 class="has-text-link">Resumer</h3>
-                    <p>C# command line interface (CLI) app for creating resumes</p>
+                    <p>C# command line interface (CLI) app for creating resumes.</p>
                 </a>
             </li>
 
             <li class="box">
                 <a href="https://github.com/csc530/mysite" class="has-text-current">
-                    <h3 class="has-text-link">this totally amazing awesome site :DDD</h3>
-                    <p>my personal website and lil' corner of the internet</p>
+                    <h3 class="has-text-link">My web portfolio</h3>
+                    <p>This website that you;re viewing now.
+                        An online channel to promote and develop my professional skills.
+                    </p>
                 </a>
             </li>
         </ul>

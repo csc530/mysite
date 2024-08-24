@@ -1,7 +1,9 @@
 <template>
     <TheWelcome />
+    <JobsView/>
+    <LanguagesView />
     <ProjectsView />
-    <IconListSection v-bind="sections[2]" />
+    <FrameworkView />
     <section class="section">
         <h2 class="title is-2">Schooling 🎓</h2>
         <ol>
@@ -18,7 +20,7 @@
             </li>
         </ol>
     </section>
-    <IconListSection v-for="section in sections.splice(0, 2)" :key="section.title" v-bind="section" />
+    <ToolsView />
 </template>
 
 <style scoped>
@@ -30,88 +32,11 @@
 </style>
 
 <script setup lang="ts">
-    import { getDesigns } from "@/types/devIcon";
-    import type { IconListSectionProps } from "@/types/iconListSection";
-    import IconListSection from "@/views/IconListSection.vue";
+    import LanguagesView from "@/views/LanguagesView.vue";
     import ProjectsView from "@/views/ProjectsView.vue";
+    import FrameworkView from "@/views/FrameworksView.vue";
+    import ToolsView from "@/views/ToolsView.vue";
     import TheWelcome from "@/views/TheWelcome.vue";
-    // import resumer from "./../assets/json_2024-08-17_11-20-13.json";
-    const languages = [
-        "vuejs",
-        "react",
-        "angularjs",
-        "typescript",
-        "javascript",
-        "nodejs",
-        "php",
-        "json",
-        "java",
-        "bash",
-        "powershell",
-        // "nushell",
-        "c",
-        "csharp",
-        "css3",
-        "html5",
-        "markdown",
-        "kotlin",
-        "visualbasic",
-        "mysql",
-        "sqlite",
-        "xml",
-        "yaml",
-    ].sort(() => Math.random() - 0.5);
-
-    const tools = [
-        "vscode",
-        "git",
-        "github",
-        "docker",
-        "phpstorm",
-        "jetbrains",
-        "visualstudio",
-        "mongodb",
-        "webstorm",
-        // "fatcow",
-        "azure",
-        "androidstudio",
-        "ubuntu",
-        "bun",
-        "faunadb",
-        "firebase",
-        "netlify",
-        "intellij",
-        "linux",
-        "windows11",
-        "photoshop",
-        "rider",
-        "vercel",
-    ].sort(() => Math.random() - 0.5);
-
-    const frameworks = [
-        ".net",
-        "DotNetCore",
-        "bulma",
-        "flutter",
-        "gatsby",
-        "unity",
-        "handlebars",
-        "junit",
-        "nuxtjs"
-    ].sort(() => Math.random() - 0.5);
-
-
-    const randomBool = () => Math.random() > 0.5;
-    const iconStyle = (): IconListSectionProps['iconStyle'] => ({ design: randomDesign(), wordmark: randomBool(), coloured: true, fallback: 'no-text', size: 7 });
-    const sections: IconListSectionProps[] = [
-        { title: 'Languages', blurb: "some programming languages I know and have used over the years (in no particular order(●'◡'●)", icons: languages, iconStyle: iconStyle() },
-        { title: 'Tools', blurb: "a list of tools I've gotten familiar with that help soooo much in development, cuz why sweat the small stuff", icons: tools, iconStyle: iconStyle() },
-        { title: 'frameworks', blurb: "yep, not quite a frameworker but these libraries and frameworks have made projects easier; I like wheels but I try not to reinvent them ;-)", icons: frameworks, iconStyle: iconStyle() }
-    ];
-
-    function randomDesign() {
-        const designs = getDesigns();
-        return designs[Math.floor(Math.random() * designs.length)];
-    }
+import JobsView from "@/views/JobsView.vue";
 
 </script>

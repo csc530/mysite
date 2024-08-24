@@ -6,7 +6,6 @@ import router from './router'
 
 import './assets/cat.scss'
 import './assets/stylesheets/sense.css'
-import 'devicon/devicon.min.css'
 
 import { inject } from '@vercel/analytics';
 
