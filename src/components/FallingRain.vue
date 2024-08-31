@@ -106,8 +106,6 @@
     }
 
     function fall() {
-
-
         const duration = getDuration();
         const startPos = Math.random() * containerConstraint.value.max + containerConstraint.value.min
         const bin = document.createElement('span');
@@ -174,6 +172,8 @@
                 clearTimeout(fallingStars.value ?? -0);
         })
     })
+
+    // TODO: add update on document body change
 
     onUnmounted(() => {
         typeof fallingStars.value === 'number' ?
