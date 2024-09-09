@@ -86,7 +86,7 @@
           "pink": map-get($map: $colours, $key: "pink"),
           "red": map-get($map: $colours, $key: "red"),
           "text": map-get($map: $colours, $key: "text"),
-          "background": map-get($map: $colours, $key: "base"),
+          // "background": map-get($map: $colours, $key: "base"), //breaks hr + it doens't work
           "black": map-get($map: $colours, $key: "crust"),
           "black-bis": map-get($map: $colours, $key: "mantle"),
           "black-ter": map-get($map: $colours, $key: "base"),

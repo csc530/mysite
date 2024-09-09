@@ -33,13 +33,12 @@
 
 <script setup lang="ts">
     import { PuccinTheme } from "@/types/helper";
-import { useColorMode } from "@vueuse/core";
-import { computed, ref, watch, } from "vue";
-import { useRouter } from "vue-router";
+    import { useColorMode } from "@vueuse/core";
+    import { computed, ref, watch, type Ref, } from "vue";
 
     const navMenuRef = ref<HTMLDivElement | null>(null);
     const hamburgerRef = ref<HTMLDivElement | null>(null);
-    const router = useRouter();
+    const themes: Ref<PuccinTheme[]> = ref(Object.keys(PuccinTheme)) as Ref<PuccinTheme[]>;
     const routes = computed(() => {
         const anchors = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
         return Array.from(anchors).filter(anchor => anchor.id).map(anchor => ({ name: anchor.textContent, path: `#${anchor.id}` }));
@@ -56,7 +55,10 @@ import { useRouter } from "vue-router";
         [PuccinTheme.mocha]: "https://github.com/catppuccin/catppuccin/blob/18acd8f58d49b551eb8cc0ff035a006d605c9905/assets/logos/exports/macchiato_squircle.png?raw=true",
         getTheme(theme: any) {
             if (Object.keys(PuccinTheme).includes(theme))
-                return this[theme as PuccinTheme];
+                if (theme === PuccinTheme.latte)
+                    return this[PuccinTheme.latte];
+                else
+                    return this[PuccinTheme.mocha];
             return this.latte;
         }
     };
@@ -64,7 +66,7 @@ import { useRouter } from "vue-router";
         attribute: "data-theme",
         modes: PuccinTheme,
     });
-    const colourTheme = computed(() => storeColourTheme.value === 'auto' ? systemColourTheme.value : systemColourTheme.value === 'light' ? PuccinTheme.latte : PuccinTheme.mocha);
+    const colourTheme = computed(() => storeColourTheme.value === 'auto' ? systemColourTheme.value : themes.value[0]);
 
     // ? if the prefferedColourScheme changes from outside the component (i.e. system/browser prefs.)
     watch(colourTheme, () => {
@@ -72,6 +74,8 @@ import { useRouter } from "vue-router";
     })
 
     function toggleTheme() {
-        storeColourTheme.value = storeColourTheme.value === PuccinTheme.latte ? PuccinTheme.mocha : PuccinTheme.latte;
+        const nextTheme = (themes.value.shift());
+        if (nextTheme)
+            themes.value.push(nextTheme);
     }
 </script>

@@ -1,60 +1,51 @@
 <template>
-    <teleport to="body" :disabled="teleport" ref="teleportRef">
-        <footer v-bind="$attrs"
-            class="footer flex is-flex-direction-column justify-content-center has-text-centered has-background-inherit">
-            <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/18acd8f58d49b551eb8cc0ff035a006d605c9905/assets/footers/ext_black_monochromatic.svg"
-                alt="logo" :width="width" decoding="auto" loading="lazy" />
+    <hr>
 
-            <p>Want to contact me?
-                <br>
-                <a :href="`mailto:${email}?subject=Hello...`">Send me an e-mail <i class="fas fa-envelope"></i></a>
-            </p>
+    <footer v-bind="$attrs"
+        class="footer flex is-flex-direction-column justify-content-center has-text-centered has-background-inherit">
+        <p>Want to contact me?
+            <br>
+            <a :href="`mailto:${email}?subject=Hello...`">Send me an e-mail <i class="fas fa-envelope"></i></a>
+        </p>
 
-            <section class="section">
-                <h2 class="subtitle is-7">Acknowledgements, Thx, Credits</h2>
-                <ul class="is-flex is-flex-direction-row is-gap-3 is-justify-content-space-around">
-                    <li title="bulma" class="image is-128x128">
-                        <a href="https://bulma.io"><img
-                                :src="`https://bulma.io/assets/brand/Bulma%20Logo${colour && '%20'.concat(colour)}.svg`"
-                                alt="bulma logo" loading="lazy">
-                        </a>
-                    </li>
-                    <li title="vue" class="image is-128x128">
-                        <a href="https://vuejs.org">
-                            <img src="https://raw.githubusercontent.com/vuejs/art/master/vue-badge-outlined.svg"
-                                srcset="https://github.com/vuejs/art/blob/master/vue-badge-outlined.svg?raw=true, https://vuejs.org/images/logo.png"
-                                width="100" alt="vue logo" loading="lazy" />
-                        </a>
-                    </li>
-                    <li title="catppuccin" class="image is-128x128">
-                        <a href="https://catppuccin.com">
-                            <img class="is-rounded"
-                                src="https://github.com/catppuccin/catppuccin/blob/main/assets/logos/exports/1544x1544_circle.png?raw=true"
-                                alt="catppuccin" loading="lazy" />
-                        </a>
-                    </li>
-                    <li title="chinablue03" class="image is-128x128">
-                        <a href="https://www.deviantart.com/chinablue03" target="_top" rel="external">
-                            <img class="is-rounded" src="https://a.deviantart.net/avatars-big/c/h/chinablue03.jpg?8"
-                                alt="chinablue03 - for favicon" loading="lazy">
-                        </a>
-                    </li>
-                    <li title="le moi" class="image is-128x128" wi lang="fr-CA">
-                        <a href="https://github.com/csc530/mysite">
-                            <img class="is-rounded" srcset="/bitmoji_sipping-tea.png, /bitmoji_hi.png" alt="bitmoji"
-                                src="/bitmoji_hi.png">
-                        </a>
-                    </li>
-                </ul>
-            </section>
-
-
-            <!-- <figure class="image is-16by9">
-                <img class="is-rounded" :src="mort" alt="mort" loading="eager" />
-            </figure> -->
-
-        </footer>
-    </teleport>
+        <section class="section">
+            <h2 class="subtitle is-7">Acknowledgements, Thx, Credits</h2>
+            <ul class="is-flex is-flex-direction-row is-gap-3 is-justify-content-space-around">
+                <li title="bulma" class="image is-128x128">
+                    <a href="https://bulma.io"><img
+                            :src="`https://bulma.io/assets/brand/Bulma%20Logo${colour && '%20'.concat(colour)}.svg`"
+                            alt="bulma logo" loading="lazy">
+                    </a>
+                </li>
+                <li title="vue" class="image is-128x128">
+                    <a href="https://vuejs.org">
+                        <img src="https://raw.githubusercontent.com/vuejs/art/master/vue-badge-outlined.svg"
+                            srcset="https://github.com/vuejs/art/blob/master/vue-badge-outlined.svg?raw=true, https://vuejs.org/images/logo.png"
+                            width="100" alt="vue logo" loading="lazy" />
+                    </a>
+                </li>
+                <li title="catppuccin" class="image is-128x128">
+                    <a href="https://catppuccin.com">
+                        <img class="is-rounded"
+                            src="https://github.com/catppuccin/catppuccin/blob/main/assets/logos/exports/1544x1544_circle.png?raw=true"
+                            alt="catppuccin" loading="lazy" />
+                    </a>
+                </li>
+                <li title="chinablue03" class="image is-128x128">
+                    <a href="https://www.deviantart.com/chinablue03" target="_top" rel="external">
+                        <img class="is-rounded" src="https://a.deviantart.net/avatars-big/c/h/chinablue03.jpg?8"
+                            alt="chinablue03 - for favicon" loading="lazy">
+                    </a>
+                </li>
+                <li title="le moi" class="image is-128x128" wi lang="fr-CA">
+                    <a href="https://github.com/csc530/mysite">
+                        <img class="is-rounded" srcset="/bitmoji_sipping-tea.png, /bitmoji_hi.png" alt="bitmoji"
+                            src="/bitmoji_hi.png" loading="lazy">
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </footer>
 </template>
 
 <style scoped>

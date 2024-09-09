@@ -71,7 +71,7 @@
 
         return {
             min: refElement?.offsetLeft ?? 0,
-            max: refElement?.offsetWidth - getSize() ?? 0,
+            max: (refElement?.offsetWidth ?? getSize()) - getSize(),
         }
     })
 
