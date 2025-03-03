@@ -5,23 +5,76 @@
         <meta charset="UTF-8">
         <link href="/favicon.png" type="image/png" rel="icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- <link href="https://cdn.jsdelivr.net/npm/bulma/css/bulma.min.css" rel="stylesheet"> -->
-        <!-- <link href="https://unpkg.com/@catppuccin/palette/css/catppuccin.css" rel="stylesheet"> -->
-        <title>Christofer's Portfolio</title>
+        <link href="https://cdn.jsdelivr.net/npm/bulma/css/bulma.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/csc530/cacssade/cacsscade.min.css">
+        <title>Christofer's SimpleSite</title>
         <meta content="my portolio website" name="description" property="description">
         <meta content="Link preview image URL" name="image" property="og:image">
         <meta content="christofercousins.ca" name="og:site_name" property="og:site_name">
         <meta content="my site" property="og:title" name="og:title">
         <meta content="my awes-mazingly lovely site" property="og:description">
-        <!-- <meta property="og:url" content="Canonical link preview URL"> -->
-        <link rel="preload" src="https://kit.fontawesome.com/f6ae6b9ec4.js" crossorigin="anonymous">
-        <script src="https://kit.fontawesome.com/f6ae6b9ec4.js" crossorigin="anonymous" async defer></script>
+        <link rel="preload" href="https://kit.fontawesome.com/f6ae6b9ec4.js" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/f6ae6b9ec4.js" crossorigin="anonymous"></script>
+
+     <link rel="stylesheet" type="text/css" href="animations.css">
     </head>
 
+
     <body>
-        <div id="app"></div>
-        <script src="/src/main.ts" type="module"></script>
-        <noscript>Please enable JavaScript to view this website.</noscript>
+        <header>
+            <hgroup>
+                <h1>Christofer Cousins</h1>
+                <p id="murmurs"></p>
+            </hgroup>
+        </header>
+
+        <main>
+            <p class="wave">🇨🇦👨🏿‍💻🖤🧠👾♟️
+                <!-- I am Christofer Cousins. Whether I like it or not.-->
+            </p>
+        </main>
+
+        <footer>
+            <menu>
+                <li><a href="/pages/certificates.html">Certificates</a></li>
+                <li><a href="/pages/projects.html"><i class="fa-brands fa-github-alt"></i> Projects</a></li>
+            </menu>
+            <p>
+                <small>©️ 2025 Christofer Cousins</small>
+            </p>
+        </footer>
+        <noscript>Good job who needs JavaScript, am I right? This website is powered by HTPL5!!😄</noscript>
+
+
+        <script>
+            const murmursP = document.getElementById('murmurs');
+            const murmurs = [
+                "Struggling in a world that rewards evil",
+                "Working to love others as God does",
+                "Lazy",
+                "Enthused helper",
+                "Curious",
+                "I want to get through life, but I keep looking to the next one missing my duties to do in this one",
+                ,
+                "😕",
+                "🤕",
+                "Canadian-Made",
+                "Sin born",
+                "Grace saved",
+                "World torn",
+                "Wisdom scorned",
+                "Lost by thoughts",
+                "Isn't life just beautiful",
+                "Chocolate > Candy",
+                "Lost in the thoughts",
+            ];
+
+            setInterval(() =>
+            {
+                murmur();
+            }, 5000);
+
+        </script>
     </body>
 
 </html>
