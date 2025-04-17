@@ -1,16 +1,11 @@
 {
-  "conventionalCommits.scopes": [
-    "Site",
-    "content"
-  ],
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "tsconfig.json": "tsconfig.*.json, env.d.ts",
+    "vite.config.*": "jsconfig*, vitest.config.*, cypress.config.*, playwright.config.*",
+    "package.json": "package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .oxlint*, oxlint*, .prettier*, prettier*, .editorconfig"
+  },
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit"
-  },
-  "css.styleSheets": [
-    "https://cdn.jsdelivr.net/npm/bulma/css/bulma.min.css"
-  ],
-  "BracketHighlighter.enableExtension": false,
-  "cSpell.words": [
-    "Puccin"
-  ]
+  }
 }

@@ -28,5 +28,6 @@ coverage
 *.sw?
 
 *.tsbuildinfo
-.vercel
-.env*.local
+
+logs/
+tests_output/

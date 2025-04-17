@@ -1,101 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" class="has-navbar-fixed-top-touch">
+<html lang="en-ca">
 
-    <head>
-        <meta charset="UTF-8">
-        <link href="/favicon.png" type="image/png" rel="icon">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bulma/css/bulma.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/csc530/cacssade/cacsscade.min.css">
-        <title>Christofer's SimpleSite</title>
-        <meta content="my portolio website" name="description" property="description">
-        <meta content="Link preview image URL" name="image" property="og:image">
-        <meta content="christofercousins.ca" name="og:site_name" property="og:site_name">
-        <meta content="my site" property="og:title" name="og:title">
-        <meta content="my awes-mazingly lovely site" property="og:description">
-        <link rel="preload" href="https://kit.fontawesome.com/f6ae6b9ec4.js" crossorigin="anonymous">
-        <script src="https://kit.fontawesome.com/f6ae6b9ec4.js" crossorigin="anonymous"></script>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✝🧠 | Christofer Cousins | 🍁👽</title>
+  </head>
 
-        <link rel="stylesheet" type="text/css" href="animations.css">
-    </head>
-
-
-    <body>
-        <header>
-            <hgroup>
-                <h1>Christofer Cousins</h1>
-                <p id="murmurs"></p>
-            </hgroup>
-        </header>
-
-        <main>
-            <p class="wave">🇨🇦👨🏿‍💻🖤🧠👾♟️
-                <!-- I am Christofer Cousins. Whether I like it or not.-->
-            </p>
-        </main>
-
-        <footer>
-            <menu>
-                <li><a href="/pages/certificates.html">Certificates</a></li>
-                <li><a href="/pages/projects.html"><i class="fa-brands fa-github-alt"></i> Projects</a></li>
-            </menu>
-            <p>
-                <small>©️ 2025 Christofer Cousins</small>
-            </p>
-        </footer>
-        <noscript>Good job who needs JavaScript, am I right? This website is powered by HTPL5!!😄</noscript>
-
-
-        <script>
-            const murmursP = document.getElementById('murmurs');
-            const murmurs = [
-                "Struggling in a world that rewards evil",
-                "Working to love others as God does",
-                "Lazy",
-                "Enthused helper",
-                "Curious",
-                "I want to get through life, but I keep looking to the next one missing my duties to do in this one",
-                ,
-                "😕",
-                "🤕",
-                "Canadian-Made",
-                "born in sin",
-                "saved by grace",
-                "torn apart from the world",
-                "scorned in wisdom",
-                "Lost by thoughts",
-                "Isn't life just beautiful",
-                "Chocolate > Candy",
-                "Lost in the thoughts",
-            ];
-
-
-            var i = 0;
-            var speed = 94; /* The speed/duration of the effect in milliseconds */
-            function typeWriter(txt)
-            {
-                if(i < txt?.length) {
-                    murmursP.textContent += txt[i];
-                    i++;
-                    setTimeout(typeWriter, speed, txt);
-                }
-                else if(i == txt?.length) {
-                    setTimeout(typeWriter, 5000 + Math.random() * 10_000);
-                }
-                else if(i >= 0) {
-                    murmursP.textContent = murmursP.textContent.slice(0, i);
-                    i--;
-                    setTimeout(typeWriter, speed);
-                }
-                else {
-                    i = 0;
-                    setTimeout(typeWriter, 1000, murmurs[Math.floor(Math.random() * murmurs.length)]);
-                }
-            }
-
-            typeWriter(murmurs[Math.floor(Math.random() * murmurs.length)]);
-
-        </script>
-    </body>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 
 </html>
