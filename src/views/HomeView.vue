@@ -1,70 +1,11 @@
 <template>
-    <section :class="$style.main">
+    <hgroup>
         <h1 ref="h1">Christofer Cousins</h1>
-        <div>
-            <p>Fullstack Developer</p>
-            <p>Software Engineer</p>
-        </div>
-    </section>
+        <p>Fullstack Developer | Child of God | ✝️🧠🍁👽</p>
+    </hgroup>
+
+    <article>
+        <p>Hiy! <del>I am tired. The gross pursuit of money over satisfaction and commercialization of every possible device and sale for every action is disgusting. I'm tired of resisting the pull of <i>CApItLaSIsm (not that I agree it alone is the source of these <em>1<sup>st</sup> world problems</em>)</i> and being an individual against the masses. I won't give up though; I'm bending but won't break. So, WELCOME to my website where I'll offer my skills as services and pander to the needs of the <i>"rich"</i> or <i>"powerful"</i>, because right now I'm not enough to get by.</del></p>
+        <p>I love to code and better yet to find a good problem to solve. If you are in need of a website to be made, app to be developed, or workflow to be automated... you can definitely do it yourself😁! We all start somewhere</p>
+    </article>
 </template>
-
-<script setup lang="ts">
-    import { animate } from 'animejs';
-    import { onMounted, useTemplateRef } from 'vue';
-    const h1 = useTemplateRef('h1');
-    onMounted(() => {
-        if (!h1.value)
-            return;
-
-        h1.value.innerHTML = "Christofer Cousins".split("").map(char => `<span>${char}</span>`).join("");
-
-        animate(h1.value?.querySelectorAll("span") || [], {
-            // Property keyframes
-            y: [
-                { to: '-2.75rem', ease: 'outExpo', duration: 600 },
-                { to: 0, ease: 'outBounce', duration: 800, delay: 100 }
-            ],
-            // Property specific parameters
-            rotate: {
-                from: '-1turn',
-                delay: 0
-            },
-            delay: (_, i) => i * 50, // Function based value
-            ease: 'inOutCirc',
-            loopDelay: 1000,
-            loop: true
-
-        });
-    });
-
-</script>
-
-<style module>
-    .main {
-        /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; */
-        padding: 12px;
-    }
-
-    p {
-        font-size: xx-large;
-    }
-
-    @media screen and (min-width: 1024px) {
-        h1 {
-            min-height: 80vh;
-            display: inline-flex;
-            align-items: center;
-            /* width: min-content; */
-            /* margin: auto; */
-        }
-
-        h1 + div {
-            display: inline-block;
-            width: max-content;
-            margin-inline-start: auto;
-        }
-    }
-</style>

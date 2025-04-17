@@ -1,20 +1,16 @@
 <template>
   <RouterView />
-
   <footer>
     <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/about">About</RouterLink>
+    <ul>
+      <li v-for="route in $router.options.routes" :key="route.name">
+        <router-link :to="route.path">{{ route.name }}</router-link>
+      </li>
+    </ul>
     </nav>
   </footer>
-
 </template>
 
 <script setup lang="ts">
-  import { RouterLink, RouterView } from 'vue-router';
+  import { RouterView } from 'vue-router';
 </script>
-
-
-<style lang="css">
-  /* @import url("https://cdn.jsdelivr.net/gh/csc530/cacsscade/cacsscade.min.css"); */
-</style>
